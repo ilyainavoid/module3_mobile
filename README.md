@@ -1,1 +1,1 @@
-# HITs first year mobile project: codeblocks ‎(ﾉಥ益ಥ）ﾉ﻿ ┻━┻
+# HITs first year mobile project: codeblocks ( ͡° ͜ʖ ͡°)
