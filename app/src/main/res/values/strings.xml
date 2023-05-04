@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="title_activity_project_workspace">ProjectWorkspace</string>
+    <string name="title_activity_blocks_catalog">BlocksCatalog</string>
+    <string name="title_activity_console">Console</string>
 </resources>
