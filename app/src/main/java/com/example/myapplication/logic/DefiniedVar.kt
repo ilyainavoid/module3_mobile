@@ -3,7 +3,7 @@ package com.example.myapplication.logic
 class DefiniedVar : Block() {
 
     private var value : Int = 0
-    private var variale : String = ""
+    private var variable : String = ""
     private var inputValue: String =""
     private var inputVariable: String =""
     init {
@@ -20,10 +20,10 @@ class DefiniedVar : Block() {
         initVariables()
 
         val calculated = calculate(container, inputValue)
-        variale = inputVariable
+        variable = inputVariable
         if (calculated.first == OK()) {
             value = calculated.second
-            container.setVariableValue(variale, value)
+            container.setVariableValue(variable, value)
         }
     }
 
