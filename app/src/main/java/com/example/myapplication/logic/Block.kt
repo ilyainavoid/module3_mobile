@@ -10,6 +10,7 @@ open class Block {
     }
     var inputEditLeft: String = ""
     var inputEditRight: String = ""
+    var inputComparator: String = ">="
     var indexComparator: Int = 0
     var valueVar: String = ""
 
@@ -20,6 +21,12 @@ open class Block {
     //lateinit var holder: BlocksAdapter.ViewHolder
     var activity: MainActivity? = null
 
+    lateinit var begin: Begin
+    lateinit var end: End
+    lateinit var exit: Exit
+    // Флаг. В while, if, if-else заставляет выполниться initVar() единожды
+    // т.к. он перезаписывает блоки выхода Exit
+    var initFlag = true
 
     var nextBlock: Block? = null
     var prevBlock: Block? = null
