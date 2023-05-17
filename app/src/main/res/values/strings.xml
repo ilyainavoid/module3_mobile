@@ -3,4 +3,5 @@
     <string name="title_activity_project_workspace">ProjectWorkspace</string>
     <string name="title_activity_blocks_catalog">BlocksCatalog</string>
     <string name="title_activity_console">Console</string>
+    <string name="title_activity_block_creating">BlockCreating</string>
 </resources>
