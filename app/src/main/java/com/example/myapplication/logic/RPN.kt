@@ -120,8 +120,6 @@ private fun RPNtoAnswer(RPN: String): Int{
     return stack.pop()
 }
 
-
-
 private fun preparingExpression(container: Container, expression: String): Pair<String, Int> {
     var exp = expression
     var preparedExpression = String()
@@ -168,4 +166,15 @@ private fun lineCheck(string: String): Int {
         return 0
     }
     return 1
+}
+
+fun defineInput(heap: Container, expression: String): Pair<String, String> {
+    val variable = "[A-Za-z]+[A-Za-z0-9_]*".toRegex()
+
+    if (variable.find(expression) != null) {
+        if (heap.isVariableExist(expression)) {
+            return Pair("Var", expression)
+        }
+    }
+    return Pair(inputError(), "")
 }

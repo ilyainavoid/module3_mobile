@@ -22,5 +22,9 @@ class Container {
     fun clearContainer(){
         container.clear()
     }
-
+    fun setNullVars(variables: List<String>){
+        for (variable: String in variables){
+            container[variable] = 0
+        }
+    }
 }
