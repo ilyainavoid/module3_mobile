@@ -13,14 +13,9 @@ class ConditionIf: Block() {
        expressionLeft = inputEditLeft
        expressionRight = inputEditRight
        comparator = inputComparator
-
-        begin.adapterConsole = adapterConsole
-        end.adapterConsole = adapterConsole
+        //добавить с консолью
         exit = Exit()
-        exit.adapterConsole = adapterConsole
-        begin.adapterBlocks = this.adapterBlocks
-        end.adapterBlocks = this.adapterBlocks
-        exit.adapterBlocks = this.adapterBlocks
+
         initFlag = false
 
     }

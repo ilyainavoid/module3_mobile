@@ -8,13 +8,16 @@ open class Block {
         var container: Container = Container()
         var isWorking = false
     }
+
     var inputEditLeft: String = ""
+    var inputEditMiddle: String = ""
     var inputEditRight: String = ""
     var inputComparator: String = ">="
     var indexComparator: Int = 0
     var valueVar: String = ""
 
 
+    var inputForCycle: String = ""
     var indexListBlocks = 0
     //lateinit var adapterConsole: ConsoleAdapter
     //lateinit var adapterBlocks: BlocksAdapter

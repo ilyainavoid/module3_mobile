@@ -13,3 +13,15 @@ fun toVarList(vars: String): List<String>{
         .replace("[,;]".toRegex(), " ")
         .split("[\\s*]".toRegex()).filter { it.isNotEmpty() }
 }
+
+fun expressionComparator(numberLeft: Int, numberRight: Int, comparator: String): Boolean {
+    when (comparator) {
+        ">" -> return (numberLeft > numberRight)
+        ">=" -> return (numberLeft >= numberRight)
+        "<" -> return (numberLeft < numberRight)
+        "<=" -> return (numberLeft <= numberRight)
+        "==" -> return (numberLeft == numberRight)
+        "!=" -> return (numberLeft != numberRight)
+    }
+    return false
+}
