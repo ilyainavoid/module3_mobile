@@ -176,5 +176,5 @@ fun defineInput(heap: Container, expression: String): Pair<String, String> {
             return Pair("Var", expression)
         }
     }
-    return Pair(inputError(), "")
+    return Pair("inputError()", "")
 }

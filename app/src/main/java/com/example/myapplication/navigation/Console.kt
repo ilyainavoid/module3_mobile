@@ -27,6 +27,6 @@ object Console : Tab {
 
     @Composable
     override fun Content() {
-
+        TabContent()
     }
 }

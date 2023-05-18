@@ -33,6 +33,6 @@ object BlockCreationMenu : Tab{
 
     @Composable
     override fun Content() {
-
+        TabContent()
     }
 }

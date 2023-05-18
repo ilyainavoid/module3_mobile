@@ -3,7 +3,7 @@ package com.example.myapplication.logic
 class UndefiniedVariable: Block() {
     private var variables: List<String> = listOf()
     init{
-        type = "UndefiinedVariable"
+        type = "UndefinedVariable"
     }
 
     override fun initVariables() {

@@ -17,7 +17,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.myapplication.logic.BlocksController
 import com.example.myapplication.ui.theme.MyApplicationTheme
 
 class MainActivity : ComponentActivity() {
@@ -35,6 +37,23 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting() {
+    Box(contentAlignment = Alignment.Center) {
+        Column() {
+            Text(text = "CodeBlocks", modifier = Modifier.padding(horizontal = 55.dp))
+            val context = LocalContext.current
+            Button(onClick = {
+                val intent = Intent(context, ProjectWorkspaceActivity::class.java)
+                context.startActivity(intent)
+            }, modifier = Modifier.fillMaxWidth(0.5f)) {
+                Text(text = "Start")
+            }
+        }
+    }
+}
+
+@Preview
+@Composable
+fun PreviewGreeting() {
     Box(contentAlignment = Alignment.Center) {
         Column() {
             Text(text = "CodeBlocks", modifier = Modifier.padding(horizontal = 55.dp))

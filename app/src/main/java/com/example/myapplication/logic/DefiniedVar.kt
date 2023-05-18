@@ -2,10 +2,10 @@ package com.example.myapplication.logic
 
 class DefiniedVar : Block() {
 
-    private var value : Int = 0
-    private var variable : String = ""
-    private var inputValue: String =""
-    private var inputVariable: String =""
+    var value : Int = 0
+    var variable : String = ""
+    var inputValue: String =""
+    var inputVariable: String =""
     init {
         type = "DefinedVariable"
     }
