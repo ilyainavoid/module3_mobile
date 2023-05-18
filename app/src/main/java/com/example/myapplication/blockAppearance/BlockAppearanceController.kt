@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import com.example.myapplication.logic.Begin
 import com.example.myapplication.logic.Block
 import com.example.myapplication.logic.DefiniedVar
+import com.example.myapplication.logic.StartProgram
 
 @Composable
 fun BlockItem(displayedBlock: Any) {
@@ -24,7 +25,7 @@ fun BlockItem(displayedBlock: Any) {
         "Equation" -> {
 
         }
-        "EntryPoint" -> {
+        is StartProgram -> {
             StartProgramBlockAppearance()
         }
     }

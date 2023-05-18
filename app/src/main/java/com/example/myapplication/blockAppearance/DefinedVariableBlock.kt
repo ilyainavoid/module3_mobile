@@ -37,16 +37,16 @@ import com.example.myapplication.logic.DefiniedVar
 
 @Composable
 fun DefinedVariableBlockAppearance(block: DefiniedVar) {
-    var showExtendView = remember { mutableStateOf(false) }
+    val showExtendView = remember { mutableStateOf(false) }
 
-    var variableName = block.variable
-    var value = block.value
+    val variableName = remember { mutableStateOf(block.variable) }
+    val variableValue = remember { mutableStateOf(block.value) }
 
-    if (variableName == "" && value == 0) {
+    if (variableName.value == "" && variableValue.value == 0) {
         showExtendView.value = true
     }
 
-    if (showExtendView.value == false) {
+    if (!showExtendView.value) {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -88,12 +88,12 @@ fun DefinedVariableBlockAppearance(block: DefiniedVar) {
 @Composable
 fun ExtendedDefinedVariableBlockAppearance(block: DefiniedVar) {
 
-    var variableName = block.variable
-    var value = block.value
+    val variableName = remember { mutableStateOf(block.variable) }
+    val variableValue = remember { mutableStateOf(block.value) }
 
-    var showExtendView = remember { mutableStateOf(true) }
+    val showExtendView = remember { mutableStateOf(true) }
 
-    if (showExtendView.value == true) {
+    if (showExtendView.value) {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -127,11 +127,10 @@ fun ExtendedDefinedVariableBlockAppearance(block: DefiniedVar) {
                             Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.CenterStart) {
                                 Row() {
                                     Text("Input name:", fontStyle = FontStyle(0), color = Color.White, modifier = Modifier.padding(5.dp))
-                                    val textState = remember { mutableStateOf("") }
                                     TextField(
-                                        value = textState.value,
+                                        value = variableName.value,
                                         onValueChange = {
-                                            textState.value = it
+                                            variableName.value = it
                                         },
                                         textStyle = TextStyle(color = Color.Black, fontSize = 20.sp),
                                         modifier = Modifier.background(Color.DarkGray)
@@ -141,11 +140,10 @@ fun ExtendedDefinedVariableBlockAppearance(block: DefiniedVar) {
                             Box() {
                                 Row() {
                                     Text("Input value:", fontStyle = FontStyle(0), color = Color.White, modifier = Modifier.padding(5.dp))
-                                    val textState = remember { mutableStateOf("") }
                                     TextField(
-                                        value = textState.value,
+                                        value = variableValue.value.toString(),
                                         onValueChange = {
-                                            textState.value = it
+                                            variableValue.value = it.toInt()
                                         },
                                         textStyle = TextStyle(color = Color.Black, fontSize = 20.sp),
                                         modifier = Modifier.background(Color.DarkGray)
