@@ -27,6 +27,8 @@ open class Block {
     lateinit var begin: Begin
     lateinit var end: End
     lateinit var exit: Exit
+    lateinit var beginElse: Begin
+    lateinit var endElse: End
     // Флаг. В while, if, if-else заставляет выполниться initVar() единожды
     // т.к. он перезаписывает блоки выхода Exit
     var initFlag = true
