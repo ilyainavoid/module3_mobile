@@ -20,3 +20,4 @@ var tagNothing = fun(): String { return "Nothing" }
 var tagVariable = fun(): String { return "Variable" }
 var tagArray = fun(): String { return "Array" }
 var undefinedVariable = fun(variableValue: String): String { return "Undefined variable '$variableValue'" }
+var typeMismatchArray = fun(name: String): String { return "Type mismatch, $name is an existing array" }

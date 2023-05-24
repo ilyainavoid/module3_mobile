@@ -50,6 +50,7 @@ import com.example.myapplication.logic.DefiniedVar
 import com.example.myapplication.logic.Equation
 import com.example.myapplication.logic.UndefiniedVariable
 import com.example.myapplication.navigation.CodeEditor.blocksList
+import com.example.myapplication.navigation.Console.adapterConsole
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -71,7 +72,10 @@ fun Tab.TabContent() {
                     BlockItem(item)
                 }
             }
-            Box(modifier = Modifier.fillMaxWidth().fillMaxHeight(0.92f).padding(15.dp), contentAlignment = Alignment.BottomEnd) {
+            Box(modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(0.92f)
+                .padding(15.dp), contentAlignment = Alignment.BottomEnd) {
                 IconButton(onClick = {
                     Toast.makeText(context, "Blocks have been deleted!", Toast.LENGTH_SHORT).show()
                     blocksList.clear()
@@ -86,14 +90,21 @@ fun Tab.TabContent() {
         }
         "Console" -> {
             val context = LocalContext.current
-            Text(
-                ">>>",
-                modifier = Modifier
-                    .padding(10.dp)
-                    .fillMaxWidth(),
-                color = Color.Green
-            )
-            Box(modifier = Modifier.fillMaxWidth().fillMaxHeight(0.92f).padding(15.dp), contentAlignment = Alignment.BottomEnd) {
+            LazyColumn(){itemsIndexed(adapterConsole.outputMessageList){
+                index, item ->
+                    Text(
+                        ">>> $item",
+                        modifier = Modifier
+                            .padding(10.dp)
+                            .fillMaxWidth(),
+                        color = Color.Green
+                    )
+                }
+            }
+            Box(modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(0.92f)
+                .padding(15.dp), contentAlignment = Alignment.BottomEnd) {
                 IconButton(onClick = {
                     Toast.makeText(context, "Program Started!", Toast.LENGTH_SHORT).show()
                 },
