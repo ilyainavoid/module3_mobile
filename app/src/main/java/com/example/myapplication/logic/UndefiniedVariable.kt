@@ -2,6 +2,9 @@ package com.example.myapplication.logic
 
 class UndefiniedVariable: Block() {
     private var variables: List<String> = listOf()
+    //удалить после защиты
+    var names: String = ""
+
     init{
         type = "UndefinedVariable"
     }

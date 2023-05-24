@@ -8,7 +8,9 @@ import androidx.compose.ui.Modifier
 import com.example.myapplication.logic.Begin
 import com.example.myapplication.logic.Block
 import com.example.myapplication.logic.DefiniedVar
+import com.example.myapplication.logic.Equation
 import com.example.myapplication.logic.StartProgram
+import com.example.myapplication.logic.UndefiniedVariable
 
 @Composable
 fun BlockItem(displayedBlock: Any) {
@@ -19,10 +21,10 @@ fun BlockItem(displayedBlock: Any) {
         is DefiniedVar -> {
             DefinedVariableBlockAppearance(displayedBlock)
         }
-        "UndefinedVariable" -> {
-
+        is UndefiniedVariable -> {
+            UndefinedVariableBlockAppearance(displayedBlock)
         }
-        "Equation" -> {
+        is Equation -> {
 
         }
         is StartProgram -> {

@@ -60,7 +60,7 @@ fun DefinedVariableBlockAppearance(block: DefiniedVar) {
                 Row(modifier = Modifier.fillMaxWidth()) {
                     Box(modifier = Modifier
                         .fillMaxWidth(.3f), contentAlignment = Alignment.CenterEnd) {
-                        Text("VariableName", fontStyle = FontStyle(0), color = Color.White, modifier = Modifier.padding(5.dp))
+                        Text(block.variable, fontStyle = FontStyle(0), color = Color.White, modifier = Modifier.padding(5.dp))
                     }
                     Box(modifier = Modifier
                         .fillMaxWidth(.1f), contentAlignment = Alignment.Center) {
@@ -68,7 +68,7 @@ fun DefinedVariableBlockAppearance(block: DefiniedVar) {
                     }
                     Box(modifier = Modifier
                         .fillMaxWidth(.8f), contentAlignment = Alignment.CenterStart) {
-                        Text("VariableValue", fontStyle = FontStyle(0), color = Color.White, modifier = Modifier.padding(5.dp))
+                        Text(block.value.toString(), fontStyle = FontStyle(0), color = Color.White, modifier = Modifier.padding(5.dp))
                     }
                     Box(modifier = Modifier
                         .fillMaxWidth(1f), contentAlignment = Alignment.Center) {
@@ -88,8 +88,8 @@ fun DefinedVariableBlockAppearance(block: DefiniedVar) {
 @Composable
 fun ExtendedDefinedVariableBlockAppearance(block: DefiniedVar) {
 
-    val variableName = remember { mutableStateOf(block.variable) }
-    val variableValue = remember { mutableStateOf(block.value) }
+    val variableName = remember { mutableStateOf("") }
+    val variableValue = remember { mutableStateOf("") }
 
     val showExtendView = remember { mutableStateOf(true) }
 
@@ -99,7 +99,7 @@ fun ExtendedDefinedVariableBlockAppearance(block: DefiniedVar) {
                 .fillMaxWidth()
                 .padding(10.dp),
             shape = RoundedCornerShape(5.dp),
-            elevation = CardDefaults.cardElevation(10.dp)
+            elevation = CardDefaults.cardElevation(20.dp)
         ) {
             Box(modifier = Modifier
                 .fillMaxWidth()
@@ -112,7 +112,7 @@ fun ExtendedDefinedVariableBlockAppearance(block: DefiniedVar) {
                                 Row(modifier = Modifier.fillMaxWidth()) {
                                     Box(modifier = Modifier
                                         .fillMaxWidth(.3f), contentAlignment = Alignment.CenterEnd) {
-                                        Text("VariableName", fontStyle = FontStyle(0), color = Color.White, modifier = Modifier.padding(5.dp))
+                                        Text(block.variable, fontStyle = FontStyle(0), color = Color.White, modifier = Modifier.padding(5.dp))
                                     }
                                     Box(modifier = Modifier
                                         .fillMaxWidth(.1f), contentAlignment = Alignment.Center) {
@@ -120,7 +120,7 @@ fun ExtendedDefinedVariableBlockAppearance(block: DefiniedVar) {
                                     }
                                     Box(modifier = Modifier
                                         .fillMaxWidth(.8f), contentAlignment = Alignment.CenterStart) {
-                                        Text("VariableValue", fontStyle = FontStyle(0), color = Color.White, modifier = Modifier.padding(5.dp))
+                                        Text(block.value.toString(), fontStyle = FontStyle(0), color = Color.White, modifier = Modifier.padding(5.dp))
                                     }
                                 }
                             }
@@ -133,7 +133,7 @@ fun ExtendedDefinedVariableBlockAppearance(block: DefiniedVar) {
                                             variableName.value = it
                                         },
                                         textStyle = TextStyle(color = Color.Black, fontSize = 20.sp),
-                                        modifier = Modifier.background(Color.DarkGray)
+                                        modifier = Modifier.background(Color.DarkGray).padding(10.dp)
                                     )
                                 }
                             }
@@ -141,12 +141,12 @@ fun ExtendedDefinedVariableBlockAppearance(block: DefiniedVar) {
                                 Row() {
                                     Text("Input value:", fontStyle = FontStyle(0), color = Color.White, modifier = Modifier.padding(5.dp))
                                     TextField(
-                                        value = variableValue.value.toString(),
+                                        value = variableValue.value,
                                         onValueChange = {
-                                            variableValue.value = it.toInt()
+                                            variableValue.value = it
                                         },
                                         textStyle = TextStyle(color = Color.Black, fontSize = 20.sp),
-                                        modifier = Modifier.background(Color.DarkGray)
+                                        modifier = Modifier.background(Color.DarkGray).padding(10.dp)
                                     )
                                 }
                             }
@@ -154,10 +154,14 @@ fun ExtendedDefinedVariableBlockAppearance(block: DefiniedVar) {
                     }
                     Box(modifier = Modifier
                         .fillMaxWidth(1f), contentAlignment = Alignment.Center) {
-                        IconButton(onClick = { showExtendView.value = false }) {
-                            Icon(Icons.Outlined.Done, contentDescription = "Информация о приложении", modifier = Modifier.size(20.dp), tint = Color.White)
+                        IconButton(onClick = {
+                            block.inputEditLeft = variableName.value
+                            block.inputEditRight = variableValue.value
+                            block.runBlock()
+                            showExtendView.value = false
+                        }) {
+                            Icon(Icons.Outlined.Done, contentDescription = "", modifier = Modifier.size(20.dp), tint = Color.White)
                         }
-                        Text(showExtendView.value.toString())
                     }
                 }
             }

@@ -8,7 +8,7 @@ class BlocksController {
     private val startingBlock = StartProgram()
 
     val blockList = mutableStateListOf<Block>()
-    val container = Container()
+    val containerStorage = Container()
 
     init {
         blockList.add(startingBlock)
