@@ -16,7 +16,6 @@ import com.example.myapplication.logic.BlocksController
 
 object CodeEditor : Tab {
     val controller = BlocksController()
-    val blocksList = controller.blockList
     override val options: TabOptions
         @Composable
         get() {

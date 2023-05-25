@@ -48,8 +48,9 @@ import com.example.myapplication.logic.Block
 import com.example.myapplication.logic.BlocksController
 import com.example.myapplication.logic.DefiniedVar
 import com.example.myapplication.logic.Equation
+import com.example.myapplication.logic.OutputBlock
 import com.example.myapplication.logic.UndefiniedVariable
-import com.example.myapplication.navigation.CodeEditor.blocksList
+import com.example.myapplication.navigation.CodeEditor.controller
 import com.example.myapplication.navigation.Console.adapterConsole
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -67,7 +68,7 @@ fun Tab.TabContent() {
             LazyColumn(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.fillMaxSize()) {
-                itemsIndexed(blocksList) {
+                itemsIndexed(controller.blockList) {
                     index, item ->
                     BlockItem(item)
                 }
@@ -78,7 +79,7 @@ fun Tab.TabContent() {
                 .padding(15.dp), contentAlignment = Alignment.BottomEnd) {
                 IconButton(onClick = {
                     Toast.makeText(context, "Blocks have been deleted!", Toast.LENGTH_SHORT).show()
-                    blocksList.clear()
+                    controller.blockList.clear()
                     blocksDeleted.value = true
                 },
                     modifier = Modifier
@@ -128,15 +129,15 @@ fun Tab.TabContent() {
                         when(item) {
                             "Defined variable" -> {
                                 newBlock = DefiniedVar()
-                                blocksList.add(newBlock)
+                                controller.blockList.add(newBlock)
                             }
                             "Undefined variable" -> {
                                 newBlock = UndefiniedVariable()
-                                blocksList.add(newBlock)
+                                controller.blockList.add(newBlock)
                             }
                             "Reassignment" -> {
                                 newBlock = Equation()
-                                blocksList.add(newBlock)
+                                controller.blockList.add(newBlock)
                             }
                             "Condition If" -> {
 //                                newBlock = ConditionIf()
@@ -147,8 +148,8 @@ fun Tab.TabContent() {
 //                                blocksList.add(newBlock)
                             }
                             "Output" -> {
-//                                newBlock = ()
-//                                blocksList.add(newBlock)
+                                newBlock = OutputBlock()
+                                controller.blockList.add(newBlock)
                             }
                             "Defined array" -> {
 //                                newBlock = ()

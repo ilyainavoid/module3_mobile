@@ -1,5 +1,7 @@
 package com.example.myapplication.logic
 
+import com.example.myapplication.navigation.Console.adapterConsole
+
 class OutputBlock:Block() {
     private var message: String = ""
     private var expression: String =""
