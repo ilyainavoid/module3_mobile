@@ -39,6 +39,7 @@ import android.widget.Toast
 import androidx.compose.material.icons.outlined.Add
 
 
+
 @Composable
 fun DrawIfBlock(block:ConditionIf) {
     val showExtendView = remember { mutableStateOf(false) }
@@ -61,7 +62,7 @@ fun DrawIfBlock(block:ConditionIf) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color.Cyan), contentAlignment = Alignment.Center
+                    .background(Color(153, 29, 5)), contentAlignment = Alignment.Center
             ) {
                 Row(modifier = Modifier.fillMaxWidth()) {
                     Box(
@@ -152,7 +153,7 @@ fun DrawExtendedIfBlock(block: ConditionIf) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color.Cyan), contentAlignment = Alignment.Center
+                    .background(Color(153, 29, 5)), contentAlignment = Alignment.Center
             ) {
                 Row() {
                     Box(
@@ -216,11 +217,11 @@ fun DrawExtendedIfBlock(block: ConditionIf) {
                                             leftPart.value = it
                                         },
                                         textStyle = TextStyle(
-                                            color = Color.Cyan,
+                                            color = Color(153, 29, 5),
                                             fontSize = 20.sp
                                         ),
                                         modifier = Modifier
-                                            .background(Color.Cyan)
+                                            .background(Color(153, 29, 5))
                                             .padding(10.dp)
                                     )
                                 }
@@ -239,11 +240,11 @@ fun DrawExtendedIfBlock(block: ConditionIf) {
                                             rightPart.value = it
                                         },
                                         textStyle = TextStyle(
-                                            color = Color.Cyan,
+                                            color = Color(153, 29, 5),
                                             fontSize = 20.sp
                                         ),
                                         modifier = Modifier
-                                            .background(Color.Cyan)
+                                            .background(Color(153, 29, 5))
                                             .padding(10.dp)
                                     )
                                 }
