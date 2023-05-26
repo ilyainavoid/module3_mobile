@@ -56,6 +56,7 @@ import com.example.myapplication.logic.OutputBlock
 import com.example.myapplication.logic.StartProgram
 import com.example.myapplication.logic.UndefinedArray
 import com.example.myapplication.logic.UndefiniedVariable
+import com.example.myapplication.logic.WhileCycle
 import com.example.myapplication.logic.disconnectBlocks
 import com.example.myapplication.logic.runProgram
 import com.example.myapplication.navigation.CodeEditor.controller
@@ -71,7 +72,7 @@ fun Tab.TabContent() {
         "Undefined variable",
         "Reassignment",
         "Condition If",
-        "While cycle",
+        "While Cycle",
         "Output",
         "Defined array",
         "Undefined array",
@@ -156,9 +157,9 @@ fun Tab.TabContent() {
                                     controller.blockList.add(newBlock)
                                 }
 
-                                "While cycle" -> {
-//                                newBlock = ()
-//                                blocksList.add(newBlock)
+                                "While Cycle" -> {
+                                    newBlock = WhileCycle()
+                                    controller.blockList.add(newBlock)
                                 }
 
                                 "Output" -> {

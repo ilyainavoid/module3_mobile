@@ -1,5 +1,6 @@
 package com.example.myapplication.blockAppearance
 
+
 import androidx.compose.runtime.setValue
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -34,14 +35,14 @@ import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.foundation.layout.wrapContentSize
-import com.example.myapplication.logic.ConditionIf
+import com.example.myapplication.logic.WhileCycle
 import android.widget.Toast
 import androidx.compose.material.icons.outlined.Add
 
 
 
 @Composable
-fun DrawIfBlock(block:ConditionIf) {
+fun DrawWhileBlock(block:WhileCycle) {
     val showExtendView = remember { mutableStateOf(false) }
 
     val leftPart = remember { mutableStateOf(block.inputEditLeft) }
@@ -62,15 +63,15 @@ fun DrawIfBlock(block:ConditionIf) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color(153, 29, 5)), contentAlignment = Alignment.Center
+                    .background(Color(7, 18, 115)), contentAlignment = Alignment.Center
             ) {
                 Row(modifier = Modifier.fillMaxWidth()) {
                     Box(
                         modifier = Modifier
-                            .fillMaxWidth(.1f), contentAlignment = Alignment.Center
+                            .fillMaxWidth(.3f), contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            "If",
+                            "While",
                             fontStyle = FontStyle(0),
                             color = Color.White,
                             modifier = Modifier.padding(10.dp)
@@ -127,14 +128,14 @@ fun DrawIfBlock(block:ConditionIf) {
                 }
             }
         }
-        }
-     else {
-        DrawExtendedIfBlock(block)
+    }
+    else {
+        DrawExtededWhileBlock(block)
     }
 }
 
 @Composable
-fun DrawExtendedIfBlock(block: ConditionIf) {
+fun DrawExtededWhileBlock(block: WhileCycle) {
     val showExtendView = remember { mutableStateOf(true) }
     val leftPart = remember { mutableStateOf("") }
     val rightPart = remember { mutableStateOf("") }
@@ -153,7 +154,7 @@ fun DrawExtendedIfBlock(block: ConditionIf) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color(153, 29, 5)), contentAlignment = Alignment.Center
+                    .background(Color(7, 18, 115)), contentAlignment = Alignment.Center
             ) {
                 Row() {
                     Box(
@@ -217,11 +218,11 @@ fun DrawExtendedIfBlock(block: ConditionIf) {
                                             leftPart.value = it
                                         },
                                         textStyle = TextStyle(
-                                            color = Color(153, 29, 5),
+                                            color = Color(7, 18, 115),
                                             fontSize = 20.sp
                                         ),
                                         modifier = Modifier
-                                            .background(Color(153, 29, 5))
+                                            .background(Color(7, 18, 115))
                                             .padding(10.dp)
                                     )
                                 }
@@ -240,11 +241,11 @@ fun DrawExtendedIfBlock(block: ConditionIf) {
                                             rightPart.value = it
                                         },
                                         textStyle = TextStyle(
-                                            color = Color(153, 29, 5),
+                                            color = Color(7, 18, 115),
                                             fontSize = 20.sp
                                         ),
                                         modifier = Modifier
-                                            .background(Color(153, 29, 5))
+                                            .background(Color(7, 18, 115))
                                             .padding(10.dp)
                                     )
                                 }
@@ -326,106 +327,19 @@ fun DrawExtendedIfBlock(block: ConditionIf) {
             }
         }
     }
-     else {
-        DrawIfBlock(block)
+    else {
+        DrawWhileBlock(block)
     }
 }
 
 @Preview
 @Composable
-fun PreviewIfBlock() {
-    DrawIfBlock(block = ConditionIf())
+fun PreviewWhileBlock() {
+    DrawWhileBlock(block = WhileCycle())
 }
 
 @Preview
 @Composable
-fun PreviewExtendedIfBlock() {
-    DrawExtendedIfBlock(block = ConditionIf())
+fun PreviewExtededWhileBlock() {
+    DrawExtededWhileBlock(block = WhileCycle())
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
