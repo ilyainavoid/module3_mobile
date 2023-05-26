@@ -128,3 +128,9 @@ fun DrawOutputBlock(block: OutputBlock) {
         }
     }
 }
+
+@Preview
+@Composable
+fun PreviewOutput() {
+    DrawOutputBlock(block = OutputBlock())
+}

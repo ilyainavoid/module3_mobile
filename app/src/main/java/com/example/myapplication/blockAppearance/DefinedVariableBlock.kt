@@ -25,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.myapplication.logic.DefiniedVar
@@ -57,10 +58,10 @@ fun DrawDefinedVariableBlock(block: DefiniedVar) {
                 Row(modifier = Modifier.fillMaxWidth()) {
                     Box(
                         modifier = Modifier
-                            .fillMaxWidth(.3f), contentAlignment = Alignment.CenterEnd
+                            .fillMaxWidth(.2f), contentAlignment = Alignment.CenterEnd
                     ) {
                         Text(
-                            block.variable,
+                            "var",
                             fontStyle = FontStyle(0),
                             color = Color.White,
                             modifier = Modifier.padding(5.dp)
@@ -68,26 +69,16 @@ fun DrawDefinedVariableBlock(block: DefiniedVar) {
                     }
                     Box(
                         modifier = Modifier
-                            .fillMaxWidth(.1f), contentAlignment = Alignment.Center
+                            .fillMaxWidth(.5f), contentAlignment = Alignment.CenterStart
                     ) {
                         Text(
-                            "=",
+                            "${block.inputEditLeft} = ${block.inputEditRight}",
                             fontStyle = FontStyle(0),
                             color = Color.White,
                             modifier = Modifier.padding(5.dp)
                         )
                     }
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth(.8f), contentAlignment = Alignment.CenterStart
-                    ) {
-                        Text(
-                            block.value.toString(),
-                            fontStyle = FontStyle(0),
-                            color = Color.White,
-                            modifier = Modifier.padding(5.dp)
-                        )
-                    }
+
                     Box(
                         modifier = Modifier
                             .fillMaxWidth(1f), contentAlignment = Alignment.Center
@@ -143,39 +134,17 @@ fun DrawExtendedDefinedVariableBlock(block: DefiniedVar) {
                                 Row(modifier = Modifier.fillMaxWidth()) {
                                     Box(
                                         modifier = Modifier
-                                            .fillMaxWidth(.3f),
-                                        contentAlignment = Alignment.CenterEnd
+                                            .fillMaxWidth(),
+                                        contentAlignment = Alignment.Center
                                     ) {
                                         Text(
-                                            block.variable,
+                                            "variable name = value ",
                                             fontStyle = FontStyle(0),
                                             color = Color.White,
                                             modifier = Modifier.padding(5.dp)
                                         )
                                     }
-                                    Box(
-                                        modifier = Modifier
-                                            .fillMaxWidth(.1f), contentAlignment = Alignment.Center
-                                    ) {
-                                        Text(
-                                            "=",
-                                            fontStyle = FontStyle(0),
-                                            color = Color.White,
-                                            modifier = Modifier.padding(5.dp)
-                                        )
-                                    }
-                                    Box(
-                                        modifier = Modifier
-                                            .fillMaxWidth(.8f),
-                                        contentAlignment = Alignment.CenterStart
-                                    ) {
-                                        Text(
-                                            block.inputEditRight,
-                                            fontStyle = FontStyle(0),
-                                            color = Color.White,
-                                            modifier = Modifier.padding(5.dp)
-                                        )
-                                    }
+
                                 }
                             }
                             Box(
@@ -254,3 +223,10 @@ fun DrawExtendedDefinedVariableBlock(block: DefiniedVar) {
         DrawDefinedVariableBlock(block)
     }
 }
+
+@Preview
+@Composable
+fun PreviewDefinedVarBlock(){
+    DrawDefinedVariableBlock(block = DefiniedVar())
+}
+

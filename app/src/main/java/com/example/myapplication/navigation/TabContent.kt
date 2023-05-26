@@ -44,6 +44,7 @@ import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
 import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import com.example.myapplication.blockAppearance.BlockItem
+import com.example.myapplication.logic.Begin
 import com.example.myapplication.logic.Block
 import com.example.myapplication.logic.BlocksController
 import com.example.myapplication.logic.ConditionIf
@@ -51,6 +52,7 @@ import com.example.myapplication.logic.DefinedArray
 import com.example.myapplication.logic.DefiniedVar
 import com.example.myapplication.logic.End
 import com.example.myapplication.logic.Equation
+import com.example.myapplication.logic.ForCycle
 import com.example.myapplication.logic.OK
 import com.example.myapplication.logic.OutputBlock
 import com.example.myapplication.logic.StartProgram
@@ -155,10 +157,18 @@ fun Tab.TabContent() {
                                 "Condition If" -> {
                                     newBlock = ConditionIf()
                                     controller.blockList.add(newBlock)
+                                    newBlock = Begin()
+                                    controller.blockList.add(newBlock)
+                                    newBlock = End()
+                                    controller.blockList.add(newBlock)
                                 }
 
                                 "While Cycle" -> {
                                     newBlock = WhileCycle()
+                                    controller.blockList.add(newBlock)
+                                    newBlock = Begin()
+                                    controller.blockList.add(newBlock)
+                                    newBlock = End()
                                     controller.blockList.add(newBlock)
                                 }
 
@@ -178,13 +188,21 @@ fun Tab.TabContent() {
                                 }
 
                                 "Condition If Else" -> {
-//                                newBlock = ()
-//                                blocksList.add(newBlock)
+                                    newBlock = ConditionIf()
+                                    controller.blockList.add(newBlock)
+                                    newBlock = Begin()
+                                    controller.blockList.add(newBlock)
+                                    newBlock = End()
+                                    controller.blockList.add(newBlock)
                                 }
 
                                 "For cycle" -> {
-//                                newBlock = ()
-//                                blocksList.add(newBlock)
+                                    newBlock = ForCycle()
+                                    controller.blockList.add(newBlock)
+                                    newBlock = Begin()
+                                    controller.blockList.add(newBlock)
+                                    newBlock = End()
+                                    controller.blockList.add(newBlock)
                                 }
 
                                 "End" -> {

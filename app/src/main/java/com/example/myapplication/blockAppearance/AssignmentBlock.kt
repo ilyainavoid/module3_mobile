@@ -58,10 +58,10 @@ fun DrawAssignmentBlock(block: Equation) {
                 Row(modifier = Modifier.fillMaxWidth()) {
                     Box(
                         modifier = Modifier
-                            .fillMaxWidth(.3f), contentAlignment = Alignment.CenterEnd
+                            .fillMaxWidth(.45f), contentAlignment = Alignment.CenterEnd
                     ) {
                         Text(
-                            block.inputEditLeft,
+                            variableName.value,
                             fontStyle = FontStyle(0),
                             color = Color.White,
                             modifier = Modifier.padding(5.dp)
@@ -83,7 +83,7 @@ fun DrawAssignmentBlock(block: Equation) {
                             .fillMaxWidth(.8f), contentAlignment = Alignment.CenterStart
                     ) {
                         Text(
-                            block.inputEditRight,
+                            variableValue.value,
                             fontStyle = FontStyle(0),
                             color = Color.White,
                             modifier = Modifier.padding(5.dp)
@@ -143,11 +143,11 @@ fun DrawExtendedAssignmentBlock(block: Equation) {
                                 Row(modifier = Modifier.fillMaxWidth()) {
                                     Box(
                                         modifier = Modifier
-                                            .fillMaxWidth(.3f),
+                                            .fillMaxWidth(.5f),
                                         contentAlignment = Alignment.CenterEnd
                                     ) {
                                         Text(
-                                            block.inputEditLeft,
+                                            "variable name",
                                             fontStyle = FontStyle(0),
                                             color = Color.White,
                                             modifier = Modifier.padding(5.dp)
@@ -166,11 +166,11 @@ fun DrawExtendedAssignmentBlock(block: Equation) {
                                     }
                                     Box(
                                         modifier = Modifier
-                                            .fillMaxWidth(.8f),
+                                            .fillMaxWidth(),
                                         contentAlignment = Alignment.CenterStart
                                     ) {
                                         Text(
-                                            block.inputEditRight.toString(),
+                                            "new value",
                                             fontStyle = FontStyle(0),
                                             color = Color.White,
                                             modifier = Modifier.padding(5.dp)
@@ -253,4 +253,10 @@ fun DrawExtendedAssignmentBlock(block: Equation) {
     } else {
         DrawAssignmentBlock(block)
     }
+}
+
+@Preview
+@Composable
+fun previewAssigmentBlock() {
+    DrawAssignmentBlock(block = Equation())
 }

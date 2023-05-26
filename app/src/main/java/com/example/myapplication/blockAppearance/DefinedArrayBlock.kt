@@ -60,10 +60,10 @@ fun DrawDefinedArrayBlock(block: DefinedArray) {
                         Row(modifier = Modifier.fillMaxWidth()) {
                             Box(
                                 modifier = Modifier
-                                    .fillMaxWidth(.3f), contentAlignment = Alignment.CenterEnd
+                                    .fillMaxWidth(.3f), contentAlignment = Alignment.Center
                             ) {
                                 Text(
-                                    "${block.name}[ ],",
+                                    "arr",
                                     fontStyle = FontStyle(0),
                                     color = Color.White,
                                     modifier = Modifier.padding(5.dp)
@@ -71,26 +71,16 @@ fun DrawDefinedArrayBlock(block: DefinedArray) {
                             }
                             Box(
                                 modifier = Modifier
-                                    .fillMaxWidth(.4f), contentAlignment = Alignment.Center
+                                    .fillMaxWidth(), contentAlignment = Alignment.CenterStart
                             ) {
                                 Text(
-                                    " size =",
+                                    "${arrayName.value}[ ](${arraySize.value})",
                                     fontStyle = FontStyle(0),
                                     color = Color.White,
                                     modifier = Modifier.padding(5.dp)
                                 )
                             }
-                            Box(
-                                modifier = Modifier
-                                    .fillMaxWidth(.8f), contentAlignment = Alignment.CenterStart
-                            ) {
-                                Text(
-                                    block.size.toString(),
-                                    fontStyle = FontStyle(0),
-                                    color = Color.White,
-                                    modifier = Modifier.padding(5.dp)
-                                )
-                            }
+
                         }
                         Row(modifier = Modifier.fillMaxWidth()) {
                             Box(
@@ -98,7 +88,7 @@ fun DrawDefinedArrayBlock(block: DefinedArray) {
                                     .fillMaxWidth(), contentAlignment = Alignment.Center
                             ) {
                                 Text(
-                                    "values: ${block.values}",
+                                    "values: ${arrayValues.value}",
                                     fontStyle = FontStyle(0),
                                     color = Color.White,
                                     modifier = Modifier.padding(5.dp)
@@ -160,39 +150,17 @@ fun DrawExtendedDefinedArrayBlock(block: DefinedArray) {
                                 Row(modifier = Modifier.fillMaxWidth()) {
                                     Box(
                                         modifier = Modifier
-                                            .fillMaxWidth(.3f),
-                                        contentAlignment = Alignment.CenterEnd
+                                            .fillMaxWidth(),
+                                        contentAlignment = Alignment.Center
                                     ) {
                                         Text(
-                                            "${block.name}[ ],",
+                                            "array_name [ ] (size)",
                                             fontStyle = FontStyle(0),
                                             color = Color.White,
                                             modifier = Modifier.padding(5.dp)
                                         )
                                     }
-                                    Box(
-                                        modifier = Modifier
-                                            .fillMaxWidth(.4f), contentAlignment = Alignment.Center
-                                    ) {
-                                        Text(
-                                            " size = ",
-                                            fontStyle = FontStyle(0),
-                                            color = Color.White,
-                                            modifier = Modifier.padding(5.dp)
-                                        )
-                                    }
-                                    Box(
-                                        modifier = Modifier
-                                            .fillMaxWidth(.8f),
-                                        contentAlignment = Alignment.CenterStart
-                                    ) {
-                                        Text(
-                                            block.size.toString(),
-                                            fontStyle = FontStyle(0),
-                                            color = Color.White,
-                                            modifier = Modifier.padding(5.dp)
-                                        )
-                                    }
+
                                 }
                             }
                             Box(
@@ -277,7 +245,7 @@ fun DrawExtendedDefinedArrayBlock(block: DefinedArray) {
                             block.inputEditLeft = arrayName.value
                             block.inputEditMiddle = arraySize.value
                             block.inputEditRight = arrayValues.value
-                            block.runBlock()
+                            //block.runBlock()
                             showExtendView.value = false
                         }) {
                             Icon(

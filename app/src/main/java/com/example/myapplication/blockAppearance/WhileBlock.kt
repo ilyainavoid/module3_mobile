@@ -48,9 +48,9 @@ fun DrawWhileBlock(block:WhileCycle) {
     val leftPart = remember { mutableStateOf(block.inputEditLeft) }
     val rightPart = remember { mutableStateOf(block.inputEditRight) }
     val comparator = remember { mutableStateOf(block.inputComparator)}
-    if (leftPart.value == "" && rightPart.value =="") {
-        showExtendView.value = true
-    }
+//    if (leftPart.value == "" && rightPart.value =="") {
+//        showExtendView.value = true
+//    }
 
     if (!showExtendView.value) {
         Card(
@@ -68,7 +68,7 @@ fun DrawWhileBlock(block:WhileCycle) {
                 Row(modifier = Modifier.fillMaxWidth()) {
                     Box(
                         modifier = Modifier
-                            .fillMaxWidth(.3f), contentAlignment = Alignment.Center
+                            .fillMaxWidth(.2f), contentAlignment = Alignment.Center
                     ) {
                         Text(
                             "While",
@@ -79,7 +79,7 @@ fun DrawWhileBlock(block:WhileCycle) {
                     }
                     Box(
                         modifier = Modifier
-                            .fillMaxWidth(.3f), contentAlignment = Alignment.CenterEnd
+                            .fillMaxWidth(.35f), contentAlignment = Alignment.CenterEnd
                     ) {
                         Text(
                             leftPart.value,
@@ -90,7 +90,7 @@ fun DrawWhileBlock(block:WhileCycle) {
                     }
                     Box(
                         modifier = Modifier
-                            .fillMaxWidth(.4f), contentAlignment = Alignment.Center
+                            .fillMaxWidth(.25f), contentAlignment = Alignment.Center
                     ) {
                         Text(
                             comparator.value,
@@ -166,7 +166,7 @@ fun DrawExtededWhileBlock(block: WhileCycle) {
                                 Row(modifier = Modifier.fillMaxWidth()) {
                                     Box(
                                         modifier = Modifier
-                                            .fillMaxWidth(.3f),
+                                            .fillMaxWidth(.5f),
                                         contentAlignment = Alignment.CenterEnd
                                     ) {
                                         Text(

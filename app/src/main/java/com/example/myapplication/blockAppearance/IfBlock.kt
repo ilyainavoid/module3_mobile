@@ -118,7 +118,7 @@ fun DrawIfBlock(block:ConditionIf) {
                         }) {
                             Icon(
                                 Icons.Outlined.Settings,
-                                contentDescription = "Информация о приложении",
+                                contentDescription = "",
                                 modifier = Modifier.size(20.dp),
                                 tint = Color.White
                             )
@@ -136,8 +136,8 @@ fun DrawIfBlock(block:ConditionIf) {
 @Composable
 fun DrawExtendedIfBlock(block: ConditionIf) {
     val showExtendView = remember { mutableStateOf(true) }
-    val leftPart = remember { mutableStateOf("") }
-    val rightPart = remember { mutableStateOf("") }
+    val leftPart = remember { mutableStateOf(block.inputEditLeft) }
+    val rightPart = remember { mutableStateOf(block.inputEditRight) }
     val context = LocalContext.current
     var expanded by remember { mutableStateOf(false) }
 

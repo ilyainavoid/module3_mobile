@@ -33,15 +33,15 @@ import com.example.myapplication.logic.UndefinedArray
 import com.example.myapplication.navigation.CodeEditor
 
 @Composable
-fun UndefinedArrayBlockAppearance(block: UndefinedArray) {
+fun DrawUndefinedArrayBlock(block: UndefinedArray) {
     val showExtendView = remember { mutableStateOf(false) }
 
     val arrayName = remember { mutableStateOf(block.inputEditLeft) }
     val arraySize = remember { mutableStateOf(block.inputEditRight) }
 
-    if (arrayName.value == "" && arraySize.value == "") {
-        showExtendView.value = true
-    }
+//    if (arrayName.value == "" && arraySize.value == "") {
+//        showExtendView.value = true
+//    }
 
     if (!showExtendView.value) {
         Card(
@@ -59,21 +59,10 @@ fun UndefinedArrayBlockAppearance(block: UndefinedArray) {
                 Row(modifier = Modifier.fillMaxWidth()) {
                     Box(
                         modifier = Modifier
-                            .fillMaxWidth(.3f), contentAlignment = Alignment.CenterEnd
+                            .fillMaxWidth(.3f), contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            "${block.name}[ ],",
-                            fontStyle = FontStyle(0),
-                            color = Color.White,
-                            modifier = Modifier.padding(5.dp)
-                        )
-                    }
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth(.4f), contentAlignment = Alignment.Center
-                    ) {
-                        Text(
-                            " size =",
+                            "arr",
                             fontStyle = FontStyle(0),
                             color = Color.White,
                             modifier = Modifier.padding(5.dp)
@@ -84,12 +73,13 @@ fun UndefinedArrayBlockAppearance(block: UndefinedArray) {
                             .fillMaxWidth(.8f), contentAlignment = Alignment.CenterStart
                     ) {
                         Text(
-                            block.size.toString(),
+                            "${arrayName.value}[ ](${arraySize.value})",
                             fontStyle = FontStyle(0),
                             color = Color.White,
                             modifier = Modifier.padding(5.dp)
                         )
                     }
+
                     Box(
                         modifier = Modifier
                             .fillMaxWidth(1f), contentAlignment = Alignment.Center
@@ -110,12 +100,12 @@ fun UndefinedArrayBlockAppearance(block: UndefinedArray) {
             }
         }
     } else {
-        ExtendedUndefinedArrayBlockAppearance(block)
+        DrawExtendedUndefinedArrayBlock(block)
     }
 }
 
 @Composable
-fun ExtendedUndefinedArrayBlockAppearance(block: UndefinedArray) {
+fun DrawExtendedUndefinedArrayBlock(block: UndefinedArray) {
     val arrayName = remember { mutableStateOf(block.inputEditLeft) }
     val arraySize = remember { mutableStateOf(block.inputEditRight) }
 
@@ -144,39 +134,17 @@ fun ExtendedUndefinedArrayBlockAppearance(block: UndefinedArray) {
                                 Row(modifier = Modifier.fillMaxWidth()) {
                                     Box(
                                         modifier = Modifier
-                                            .fillMaxWidth(.3f),
-                                        contentAlignment = Alignment.CenterEnd
+                                            .fillMaxWidth(),
+                                        contentAlignment = Alignment.Center
                                     ) {
                                         Text(
-                                            "${block.name}[ ],",
+                                            "array_name [ ] (size)",
                                             fontStyle = FontStyle(0),
                                             color = Color.White,
                                             modifier = Modifier.padding(5.dp)
                                         )
                                     }
-                                    Box(
-                                        modifier = Modifier
-                                            .fillMaxWidth(.4f), contentAlignment = Alignment.Center
-                                    ) {
-                                        Text(
-                                            " size = ",
-                                            fontStyle = FontStyle(0),
-                                            color = Color.White,
-                                            modifier = Modifier.padding(5.dp)
-                                        )
-                                    }
-                                    Box(
-                                        modifier = Modifier
-                                            .fillMaxWidth(.8f),
-                                        contentAlignment = Alignment.CenterStart
-                                    ) {
-                                        Text(
-                                            block.size.toString(),
-                                            fontStyle = FontStyle(0),
-                                            color = Color.White,
-                                            modifier = Modifier.padding(5.dp)
-                                        )
-                                    }
+
                                 }
                             }
                             Box(
@@ -211,7 +179,7 @@ fun ExtendedUndefinedArrayBlockAppearance(block: UndefinedArray) {
                                         "Input size:",
                                         fontStyle = FontStyle(0),
                                         color = Color.White,
-                                        modifier = Modifier.padding(5.dp)
+                                        modifier = Modifier.padding(9.dp)
                                     )
                                     TextField(
                                         value = arraySize.value,
@@ -252,19 +220,19 @@ fun ExtendedUndefinedArrayBlockAppearance(block: UndefinedArray) {
             }
         }
     } else {
-        UndefinedArrayBlockAppearance(block)
+        DrawUndefinedArrayBlock(block)
     }
 }
 
 @Preview
 @Composable
 fun DrawIndefinedArray() {
-    ExtendedUndefinedArrayBlockAppearance(block = UndefinedArray())
+    DrawExtendedUndefinedArrayBlock(block = UndefinedArray())
 
 }
 
 @Preview
 @Composable
 fun SmallDrawIndefinedArray() {
-    UndefinedArrayBlockAppearance(block = UndefinedArray())
+    DrawUndefinedArrayBlock(block = UndefinedArray())
 }
