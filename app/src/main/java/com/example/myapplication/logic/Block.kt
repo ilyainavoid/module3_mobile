@@ -22,7 +22,7 @@ open class Block {
 
     var inputForCycle: String = ""
     var indexListBlocks = 0
-    var activity: MainActivity? = null
+
     var adapterConsole = Console.adapterConsole
 
     lateinit var begin: Begin

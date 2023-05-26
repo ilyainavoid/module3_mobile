@@ -18,22 +18,27 @@ import com.example.myapplication.logic.UndefiniedVariable
 
 @Composable
 fun BlockItem(displayedBlock: Any) {
-    when(displayedBlock) {
+    when (displayedBlock) {
         is Begin -> {
 
         }
+
         is DefiniedVar -> {
             DefinedVariableBlockAppearance(displayedBlock)
         }
+
         is UndefiniedVariable -> {
             UndefinedVariableBlockAppearance(displayedBlock)
         }
+
         is Equation -> {
             AssignmentBlockAppearance(displayedBlock)
         }
+
         is StartProgram -> {
             StartProgramBlockAppearance()
         }
+
         is OutputBlock -> {
             DrawOutputBlock(displayedBlock)
         }

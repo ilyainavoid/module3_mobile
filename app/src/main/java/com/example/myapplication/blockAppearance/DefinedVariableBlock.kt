@@ -43,7 +43,7 @@ fun DefinedVariableBlockAppearance(block: DefiniedVar) {
     val variableName = remember { mutableStateOf(block.inputEditLeft) }
     val variableValue = remember { mutableStateOf(block.inputEditRight) }
 
-    if (variableName.value == "" && variableValue.value =="") {
+    if (variableName.value == "" && variableValue.value == "") {
         showExtendView.value = true
     }
 

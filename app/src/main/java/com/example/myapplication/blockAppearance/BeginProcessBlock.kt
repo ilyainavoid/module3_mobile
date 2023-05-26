@@ -20,18 +20,30 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun drawBeginProcessBlock()
-{
+fun drawBeginProcessBlock() {
     Card(
-        modifier = Modifier.fillMaxWidth().padding(10.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(10.dp),
         shape = RoundedCornerShape(5.dp),
         elevation = CardDefaults.cardElevation(10.dp)
     ) {
-        Box(modifier = Modifier.fillMaxWidth().background(Brush.horizontalGradient(listOf(Color.Green,Color.White),0f,2000f)) , contentAlignment = Alignment.Center) {
-            Text("Begin of process", fontStyle = FontStyle(0), color = Color.White, modifier = Modifier.padding(5.dp))
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Brush.horizontalGradient(listOf(Color.Green, Color.White), 0f, 2000f)),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                "Begin of process",
+                fontStyle = FontStyle(0),
+                color = Color.White,
+                modifier = Modifier.padding(5.dp)
+            )
         }
     }
 }
+
 @Preview
 @Composable
 fun previewDrawBeginProcessBlock() {

@@ -56,9 +56,9 @@ class ForCycle : Block() {
             status = invalidComparator()
         }
 
-        val leftCalculated = calculate(accessContainer(), leftExpression)
-        val middleCalculated = calculate(accessContainer(), middleExpression)
-        val rightCalculated = calculate(accessContainer(), rightExpression)
+        val leftCalculated = calculate(container, leftExpression)
+        val middleCalculated = calculate(container, middleExpression)
+        val rightCalculated = calculate(container, rightExpression)
 
         if (expressionComparator(rightCalculated.second, middleCalculated.second, comparator)) {
             connectBlocks(this, begin, clear = false)

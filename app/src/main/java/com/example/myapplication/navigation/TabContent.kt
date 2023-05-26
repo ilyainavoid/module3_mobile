@@ -51,6 +51,7 @@ import com.example.myapplication.logic.End
 import com.example.myapplication.logic.Equation
 import com.example.myapplication.logic.OK
 import com.example.myapplication.logic.OutputBlock
+import com.example.myapplication.logic.StartProgram
 import com.example.myapplication.logic.UndefiniedVariable
 import com.example.myapplication.logic.disconnectBlocks
 import com.example.myapplication.logic.runProgram
@@ -98,8 +99,12 @@ fun Tab.TabContent() {
                     onClick = {
                         Toast.makeText(context, "Blocks have been deleted!", Toast.LENGTH_SHORT)
                             .show()
+                        controller.containerStorage.clearContainer()
                         controller.blockList.clear()
+                        val block = StartProgram()
+                        controller.blockList.add(block)
                         blocksDeleted.value = true
+
                     },
                     modifier = Modifier
                         .then(Modifier.size(40.dp)),

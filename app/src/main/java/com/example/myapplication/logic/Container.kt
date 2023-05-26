@@ -25,6 +25,7 @@ class Container {
 
     fun clearContainer() {
         container.clear()
+        containerArray.clear()
     }
 
     fun setNullVars(variables: List<String>) {

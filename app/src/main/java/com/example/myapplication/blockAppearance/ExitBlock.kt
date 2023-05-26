@@ -27,15 +27,22 @@ fun DrawExitBlock() {
         shape = RoundedCornerShape(5.dp),
         elevation = CardDefaults.cardElevation(10.dp)
     ) {
-        Box(modifier = Modifier
-            .fillMaxWidth()
-            .background(
-                Brush.radialGradient(
-                    listOf(Color.Red, Color.White),
-                    Offset.Unspecified, 600f
-                )
-            ) , contentAlignment = Alignment.Center) {
-            Text("End of the program", fontStyle = FontStyle(0), color = Color.White, modifier = Modifier.padding(5.dp))
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(
+                    Brush.radialGradient(
+                        listOf(Color.Red, Color.White),
+                        Offset.Unspecified, 600f
+                    )
+                ), contentAlignment = Alignment.Center
+        ) {
+            Text(
+                "End of the program",
+                fontStyle = FontStyle(0),
+                color = Color.White,
+                modifier = Modifier.padding(5.dp)
+            )
         }
     }
 }

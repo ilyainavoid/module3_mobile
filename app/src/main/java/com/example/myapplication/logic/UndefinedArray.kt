@@ -21,7 +21,7 @@ class UndefinedArray : Block() {
                 flag = false
             }
             if (container.isArrayExist(el)) {
-                //status = typeMismatchArray(el)
+                status = typeMismatchArray(el)
                 flag = false
             }
         }

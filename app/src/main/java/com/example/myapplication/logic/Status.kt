@@ -1,28 +1,27 @@
 package com.example.myapplication.logic
 
-var OK = fun(): String { return "OK" }
-
-var invalidComparator = fun(): String { return "Invalid comparator" }
-var divisionByZero = fun(): String { return "Division by zero" }
-var incorrectExpression = fun(): String { return "Incorrect expression" }
-var incorrectNaming = fun(name: String): String { return "Incorrect naming '$name'" }
-var incorrectSize = fun(size: String): String { return "Incorrect size '$size'" }
-var unexpectedSymbol = fun(operand: String): String { return "Unexpected symbol '$operand'" }
-var allComparators = listOf(">", ">=", "<", "<=", "==", "!=")
-var inputError = fun(): String { return "InputError" }
-var mismatchSize = fun(): String { return "Sizes mismatch" }
-var typeMismatchVariable =
+val OK = fun(): String { return "OK" }
+val invalidComparator = fun(): String { return "Invalid comparator" }
+val divisionByZero = fun(): String { return "Division by zero" }
+val incorrectExpression = fun(): String { return "Incorrect expression" }
+val incorrectNaming = fun(name: String): String { return "Incorrect naming '$name'" }
+val incorrectSize = fun(size: String): String { return "Incorrect size '$size'" }
+val unexpectedSymbol = fun(operand: String): String { return "Unexpected symbol '$operand'" }
+val allComparators = listOf(">", ">=", "<", "<=", "==", "!=")
+val inputError = fun(): String { return "InputError" }
+val mismatchSize = fun(): String { return "Sizes mismatch" }
+val typeMismatchVariable =
     fun(name: String): String { return "Type mismatch, $name is an existing variable" }
-var incorrectValue = fun(value: String): String { return "Incorrect value '$value'" }
-var emptyInput = fun(): String { return "Empty Input" }
-var undefinedArray = fun(arrayName: String): String { return "Undefined array '$arrayName'" }
-var indexOutOfRange = fun(): String { return "Index out of range" }
-var tagNothing = fun(): String { return "Nothing" }
-var tagVariable = fun(): String { return "Variable" }
-var tagArray = fun(): String { return "Array" }
-var undefinedVariable =
+val incorrectValue = fun(value: String): String { return "Incorrect value '$value'" }
+val emptyInput = fun(): String { return "Empty Input" }
+val undefinedArray = fun(arrayName: String): String { return "Undefined array '$arrayName'" }
+val indexOutOfRange = fun(): String { return "Index out of range" }
+val tagNothing = fun(): String { return "Nothing" }
+val tagVariable = fun(): String { return "Variable" }
+val tagArray = fun(): String { return "Array" }
+val undefinedVariable =
     fun(variableValue: String): String { return "Undefined variable '$variableValue'" }
-var typeMismatchArray =
+val typeMismatchArray =
     fun(name: String): String { return "Type mismatch, $name is an existing array" }
-var programFinish = fun(status: String): String { return "Program finished with status: $status" }
-var programStart = fun(): String { return "Program started" }
+val programFinish = fun(status: String): String { return "Program finished with status: $status" }
+val programStart = fun(): String { return "Program started" }
