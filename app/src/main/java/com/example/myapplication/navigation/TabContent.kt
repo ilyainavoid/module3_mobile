@@ -114,39 +114,7 @@ fun Tab.TabContent() {
         }
 
         "Console" -> {
-            val context = LocalContext.current
-            LazyColumn() {
-                itemsIndexed(adapterConsole.outputMessageList) { index, item ->
-                    Text(
-                        ">>> $item",
-                        modifier = Modifier
-                            .padding(10.dp)
-                            .fillMaxWidth(),
-                        color = Color.Green
-                    )
-                }
-            }
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight(0.92f)
-                    .padding(15.dp), contentAlignment = Alignment.BottomEnd
-            ) {
-                IconButton(
-                    onClick = {
-                        Toast.makeText(context, "Program Started!", Toast.LENGTH_SHORT).show()
-                        runProgram()
-                    },
-                    modifier = Modifier
-                        .then(Modifier.size(40.dp))
-                ) {
-                    Icon(
-                        Icons.Default.PlayArrow,
-                        contentDescription = "content description",
-                        tint = Color.Green
-                    )
-                }
-            }
+            ConsoleContent()
         }
 
         "BlockCreationMenu" -> {
@@ -223,6 +191,43 @@ fun Tab.TabContent() {
                     }
                 }
             }
+        }
+    }
+}
+
+@Composable
+fun ConsoleContent() {
+    val context = LocalContext.current
+    LazyColumn() {
+        itemsIndexed(adapterConsole.outputMessageList) { index, item ->
+            Text(
+                ">>> $item",
+                modifier = Modifier
+                    .padding(10.dp)
+                    .fillMaxWidth(),
+                color = Color.Green
+            )
+        }
+    }
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight(0.92f)
+            .padding(15.dp), contentAlignment = Alignment.BottomEnd
+    ) {
+        IconButton(
+            onClick = {
+                Toast.makeText(context, "Program Started!", Toast.LENGTH_SHORT).show()
+                runProgram()
+            },
+            modifier = Modifier
+                .then(Modifier.size(40.dp))
+        ) {
+            Icon(
+                Icons.Default.PlayArrow,
+                contentDescription = "content description",
+                tint = Color.Green
+            )
         }
     }
 }

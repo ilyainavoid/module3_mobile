@@ -2,6 +2,7 @@ package com.example.myapplication.logic
 
 import com.example.myapplication.MainActivity
 import com.example.myapplication.navigation.CodeEditor
+import com.example.myapplication.navigation.Console
 import java.util.*
 
 open class Block {
@@ -22,13 +23,13 @@ open class Block {
     var inputForCycle: String = ""
     var indexListBlocks = 0
     var activity: MainActivity? = null
+    var adapterConsole = Console.adapterConsole
 
     lateinit var begin: Begin
     lateinit var end: End
     lateinit var exit: Exit
     lateinit var beginElse: Begin
     lateinit var endElse: End
-    lateinit var adapterConsole: ConsoleAdapter
 
     // Флаг. В while, if, if-else заставляет выполниться initVar() единожды
     // т.к. он перезаписывает блоки выхода Exit

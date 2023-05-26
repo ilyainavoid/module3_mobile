@@ -30,8 +30,9 @@ fun expressionComparator(numberLeft: Int, numberRight: Int, comparator: String):
     return false
 }
 
-fun runProgram(){
+fun runProgram() {
     Console.adapterConsole.clearMessageList()
+    Console.adapterConsole.addMessage(programStart())
     var isOk = true
     for (i in 0 until CodeEditor.controller.blockList.size) {
         CodeEditor.controller.blockList[i].indexListBlocks = i
@@ -41,6 +42,8 @@ fun runProgram(){
             Console.adapterConsole.addMessage("${CodeEditor.controller.blockList[i].status} in block ${i + 1}")
             isOk = false
             break
+        } else if (CodeEditor.controller.blockList[i].type == "Output") {
+            CodeEditor.controller.blockList[i].runBlock()
         }
     }
     if (isOk) {

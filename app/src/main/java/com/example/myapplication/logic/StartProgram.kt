@@ -6,9 +6,8 @@ class StartProgram : Block() {
     }
 
     override fun run() {
-        adapterConsole.addMessage(programStart())
         container.clearContainer()
-        container.clearContainer()
+        container.clearArrays()
     }
 
     override fun kickRunning() {

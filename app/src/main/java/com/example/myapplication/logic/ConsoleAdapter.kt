@@ -1,7 +1,9 @@
 package com.example.myapplication.logic
 
+import androidx.compose.runtime.mutableStateListOf
+
 class ConsoleAdapter() {
-    var outputMessageList = ArrayList<String>()
+    var outputMessageList = mutableStateListOf<String>()
 
     fun addMessage(message: String) {
         outputMessageList.add(message)
