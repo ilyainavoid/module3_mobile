@@ -61,9 +61,20 @@ fun DrawIfBlock(block:ConditionIf) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color.Black), contentAlignment = Alignment.Center
+                    .background(Color.Cyan), contentAlignment = Alignment.Center
             ) {
                 Row(modifier = Modifier.fillMaxWidth()) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(.1f), contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            "If",
+                            fontStyle = FontStyle(0),
+                            color = Color.White,
+                            modifier = Modifier.padding(10.dp)
+                        )
+                    }
                     Box(
                         modifier = Modifier
                             .fillMaxWidth(.3f), contentAlignment = Alignment.CenterEnd
@@ -72,18 +83,18 @@ fun DrawIfBlock(block:ConditionIf) {
                             leftPart.value,
                             fontStyle = FontStyle(0),
                             color = Color.White,
-                            modifier = Modifier.padding(5.dp)
+                            modifier = Modifier.padding(10.dp)
                         )
                     }
                     Box(
                         modifier = Modifier
-                            .fillMaxWidth(.1f), contentAlignment = Alignment.Center
+                            .fillMaxWidth(.4f), contentAlignment = Alignment.Center
                     ) {
                         Text(
                             comparator.value,
                             fontStyle = FontStyle(0),
                             color = Color.White,
-                            modifier = Modifier.padding(5.dp)
+                            modifier = Modifier.padding(10.dp)
                         )
                     }
                     Box(
@@ -94,12 +105,12 @@ fun DrawIfBlock(block:ConditionIf) {
                             rightPart.value,
                             fontStyle = FontStyle(0),
                             color = Color.White,
-                            modifier = Modifier.padding(5.dp)
+                            modifier = Modifier.padding(10.dp)
                         )
                     }
                     Box(
                         modifier = Modifier
-                            .fillMaxWidth(1f), contentAlignment = Alignment.Center
+                            .fillMaxWidth(1f), contentAlignment = Alignment.CenterEnd
                     ) {
                         IconButton(onClick = {
                             showExtendView.value = true
@@ -123,8 +134,6 @@ fun DrawIfBlock(block:ConditionIf) {
 
 @Composable
 fun DrawExtendedIfBlock(block: ConditionIf) {
-
-    val comparator = remember { mutableStateOf("")}
     val showExtendView = remember { mutableStateOf(true) }
     val leftPart = remember { mutableStateOf("") }
     val rightPart = remember { mutableStateOf("") }
@@ -143,7 +152,7 @@ fun DrawExtendedIfBlock(block: ConditionIf) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color.Black), contentAlignment = Alignment.Center
+                    .background(Color.Cyan), contentAlignment = Alignment.Center
             ) {
                 Row() {
                     Box(
@@ -167,7 +176,7 @@ fun DrawExtendedIfBlock(block: ConditionIf) {
                                     }
                                     Box(
                                         modifier = Modifier
-                                            .fillMaxWidth(.1f), contentAlignment = Alignment.Center
+                                            .fillMaxWidth(.2f), contentAlignment = Alignment.Center
                                     ) {
                                         Text(
                                             block.inputComparator,
@@ -207,11 +216,11 @@ fun DrawExtendedIfBlock(block: ConditionIf) {
                                             leftPart.value = it
                                         },
                                         textStyle = TextStyle(
-                                            color = Color.Black,
+                                            color = Color.Cyan,
                                             fontSize = 20.sp
                                         ),
                                         modifier = Modifier
-                                            .background(Color.Black)
+                                            .background(Color.Cyan)
                                             .padding(10.dp)
                                     )
                                 }
@@ -230,11 +239,11 @@ fun DrawExtendedIfBlock(block: ConditionIf) {
                                             rightPart.value = it
                                         },
                                         textStyle = TextStyle(
-                                            color = Color.Black,
+                                            color = Color.Cyan,
                                             fontSize = 20.sp
                                         ),
                                         modifier = Modifier
-                                            .background(Color.Black)
+                                            .background(Color.Cyan)
                                             .padding(10.dp)
                                     )
                                 }
@@ -249,7 +258,7 @@ fun DrawExtendedIfBlock(block: ConditionIf) {
                                         "Input comparator",
                                         fontStyle = FontStyle(0),
                                         color = Color.White,
-                                        modifier = Modifier.padding(5.dp)
+                                        modifier = Modifier.padding(10.dp)
                                     )
                                     IconButton(onClick = { expanded = !expanded }) {
                                         Icon(
