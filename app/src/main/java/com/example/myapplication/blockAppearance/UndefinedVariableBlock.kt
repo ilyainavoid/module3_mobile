@@ -41,10 +41,9 @@ fun UndefinedVariableBlockAppearance(block: UndefiniedVariable) {
     val showExtendView = remember { mutableStateOf(false) }
     val variables = block.names
 
-    if(block.names == "") {
+    if (block.names == "") {
         ExtendedUndefinedVariableBlockAppearance(block)
-    }
-    else {
+    } else {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -111,38 +110,76 @@ fun ExtendedUndefinedVariableBlockAppearance(block: UndefiniedVariable) {
             shape = RoundedCornerShape(5.dp),
             elevation = CardDefaults.cardElevation(20.dp)
         ) {
-            Box(modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.DarkGray), contentAlignment = Alignment.Center) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.DarkGray), contentAlignment = Alignment.Center
+            ) {
                 Row() {
-                    Box(modifier = Modifier
-                        .fillMaxWidth(0.875f), contentAlignment = Alignment.Center) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(0.875f), contentAlignment = Alignment.Center
+                    ) {
                         Column() {
                             Box() {
                                 Row(modifier = Modifier.fillMaxWidth()) {
-                                    Box(modifier = Modifier
-                                        .fillMaxWidth(.3f), contentAlignment = Alignment.CenterEnd) {
-                                        Text(variables.value, fontStyle = FontStyle(0), color = Color.White, modifier = Modifier.padding(5.dp))
+                                    Box(
+                                        modifier = Modifier
+                                            .fillMaxWidth(.3f),
+                                        contentAlignment = Alignment.CenterEnd
+                                    ) {
+                                        Text(
+                                            variables.value,
+                                            fontStyle = FontStyle(0),
+                                            color = Color.White,
+                                            modifier = Modifier.padding(5.dp)
+                                        )
                                     }
-                                    Box(modifier = Modifier
-                                        .fillMaxWidth(.1f), contentAlignment = Alignment.Center) {
-                                        Text("=", fontStyle = FontStyle(0), color = Color.White, modifier = Modifier.padding(5.dp))
+                                    Box(
+                                        modifier = Modifier
+                                            .fillMaxWidth(.1f), contentAlignment = Alignment.Center
+                                    ) {
+                                        Text(
+                                            "=",
+                                            fontStyle = FontStyle(0),
+                                            color = Color.White,
+                                            modifier = Modifier.padding(5.dp)
+                                        )
                                     }
-                                    Box(modifier = Modifier
-                                        .fillMaxWidth(.8f), contentAlignment = Alignment.CenterStart) {
-                                        Text("0", fontStyle = FontStyle(0), color = Color.White, modifier = Modifier.padding(5.dp))
+                                    Box(
+                                        modifier = Modifier
+                                            .fillMaxWidth(.8f),
+                                        contentAlignment = Alignment.CenterStart
+                                    ) {
+                                        Text(
+                                            "0",
+                                            fontStyle = FontStyle(0),
+                                            color = Color.White,
+                                            modifier = Modifier.padding(5.dp)
+                                        )
                                     }
                                 }
                             }
-                            Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.CenterStart) {
+                            Box(
+                                modifier = Modifier.fillMaxWidth(),
+                                contentAlignment = Alignment.CenterStart
+                            ) {
                                 Row() {
-                                    Text("Input names:", fontStyle = FontStyle(0), color = Color.White, modifier = Modifier.padding(5.dp))
+                                    Text(
+                                        "Input names:",
+                                        fontStyle = FontStyle(0),
+                                        color = Color.White,
+                                        modifier = Modifier.padding(5.dp)
+                                    )
                                     TextField(
                                         value = variables.value,
                                         onValueChange = {
                                             variables.value = it
                                         },
-                                        textStyle = TextStyle(color = Color.Black, fontSize = 20.sp),
+                                        textStyle = TextStyle(
+                                            color = Color.Black,
+                                            fontSize = 20.sp
+                                        ),
                                         modifier = Modifier
                                             .background(Color.DarkGray)
                                             .padding(10.dp)
@@ -151,20 +188,26 @@ fun ExtendedUndefinedVariableBlockAppearance(block: UndefiniedVariable) {
                             }
                         }
                     }
-                    Box(modifier = Modifier
-                        .fillMaxWidth(1f), contentAlignment = Alignment.Center) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(1f), contentAlignment = Alignment.Center
+                    ) {
                         IconButton(onClick = {
                             block.names = variables.value
                             showExtendView.value = false
                         }) {
-                            Icon(Icons.Outlined.Done, contentDescription = "Информация о приложении", modifier = Modifier.size(20.dp), tint = Color.White)
+                            Icon(
+                                Icons.Outlined.Done,
+                                contentDescription = "",
+                                modifier = Modifier.size(20.dp),
+                                tint = Color.White
+                            )
                         }
                     }
                 }
             }
         }
-    }
-    else {
+    } else {
         UndefinedVariableBlockAppearance(block)
     }
 }

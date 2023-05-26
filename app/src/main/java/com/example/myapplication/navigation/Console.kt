@@ -12,7 +12,7 @@ import cafe.adriel.voyager.navigator.tab.TabOptions
 import com.example.myapplication.logic.ConsoleAdapter
 
 object Console : Tab {
-    val adapterConsole = ConsoleAdapter()
+    var adapterConsole = ConsoleAdapter()
     override val options: TabOptions
         @Composable
         get() {

@@ -3,9 +3,9 @@ package com.example.myapplication.logic
 import java.util.*
 import kotlin.math.pow
 
-fun calculate(container: Container, expression: String): Pair<String,Int> {
+fun calculate(container: Container, expression: String): Pair<String, Int> {
     val exp = expression.replace("\\s".toRegex(), "")
-    if (exp.isEmpty()){
+    if (exp.isEmpty()) {
         return Pair(emptyInput(), 0)
     }
     val (prepared, expStatus) = preparingExpression(container, exp)
@@ -19,8 +19,8 @@ fun calculate(container: Container, expression: String): Pair<String,Int> {
     return RPNtoAnswer(toRPN(prepared))
 }
 
-private fun getPriority(symbol:Char):Int{
-    return when(symbol){
+private fun getPriority(symbol: Char): Int {
+    return when (symbol) {
         '*', '/', '%' -> 3
         '+', '-' -> 2
         '(' -> 1
@@ -29,11 +29,11 @@ private fun getPriority(symbol:Char):Int{
     }
 }
 
-private fun toRPN(expression: String): String{
+private fun toRPN(expression: String): String {
     var current = ""
     val stack: Stack<Char> = Stack<Char>()
     var priority: Int
-    for (i in expression.indices){
+    for (i in expression.indices) {
         priority = getPriority(expression[i])
         when (priority) {
             0 -> current += expression[i]
@@ -63,7 +63,7 @@ private fun toRPN(expression: String): String{
     return current
 }
 
-private fun RPNtoAnswer(RPN: String): Pair<String, Int>{
+private fun RPNtoAnswer(RPN: String): Pair<String, Int> {
     var operand = String()
     val stack: Stack<Int> = Stack<Int>()
     var i = 0
@@ -100,6 +100,7 @@ private fun RPNtoAnswer(RPN: String): Pair<String, Int>{
                             return Pair(divisionByZero(), 0)
                         }
                     }
+
                     '%' -> {
                         try {
                             stack.push(b % a)
@@ -107,8 +108,9 @@ private fun RPNtoAnswer(RPN: String): Pair<String, Int>{
                             return Pair(divisionByZero(), 0)
                         }
                     }
+
                     else -> {
-                        return  Pair(unexpectedSymbol(RPN[i].toString()), 0)
+                        return Pair(unexpectedSymbol(RPN[i].toString()), 0)
                     }
                 }
             } catch (e: EmptyStackException) {

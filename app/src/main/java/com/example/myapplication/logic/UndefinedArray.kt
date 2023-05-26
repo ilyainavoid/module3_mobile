@@ -1,6 +1,6 @@
 package com.example.myapplication.logic
 
-class UndefinedArray:Block() {
+class UndefinedArray : Block() {
     private var inputNames: List<String> = listOf()
 
     init {

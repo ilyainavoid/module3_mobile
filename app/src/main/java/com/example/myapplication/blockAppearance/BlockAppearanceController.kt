@@ -27,7 +27,7 @@ fun BlockItem(displayedBlock: Any) {
             UndefinedVariableBlockAppearance(displayedBlock)
         }
         is Equation -> {
-
+            AssignmentBlockAppearance(displayedBlock)
         }
         is StartProgram -> {
             StartProgramBlockAppearance()

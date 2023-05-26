@@ -18,7 +18,9 @@ import cafe.adriel.voyager.navigator.tab.CurrentTab
 import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabNavigator
+import com.example.myapplication.logic.Block
 import com.example.myapplication.logic.BlocksController
+import com.example.myapplication.logic.OK
 import com.example.myapplication.navigation.BlockCreationMenu
 import com.example.myapplication.navigation.CodeEditor
 import com.example.myapplication.navigation.Console
@@ -30,7 +32,10 @@ class ProjectWorkspaceActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyApplicationTheme {
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
                     TabNavigator(CodeEditor) {
                         Scaffold(
                             content = { PaddingValues ->

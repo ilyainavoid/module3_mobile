@@ -4,7 +4,7 @@ class DefiniedVar : Block() {
 
     var value : Int = 0
     var variable : String = ""
-    var inputValue: String =""
+    var inputValue: String = ""
     var inputVariable: String =""
     init {
         type = "DefinedVariable"

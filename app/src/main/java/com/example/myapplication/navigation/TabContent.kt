@@ -48,8 +48,11 @@ import com.example.myapplication.logic.Block
 import com.example.myapplication.logic.BlocksController
 import com.example.myapplication.logic.DefiniedVar
 import com.example.myapplication.logic.Equation
+import com.example.myapplication.logic.OK
 import com.example.myapplication.logic.OutputBlock
 import com.example.myapplication.logic.UndefiniedVariable
+import com.example.myapplication.logic.disconnectBlocks
+import com.example.myapplication.logic.runProgram
 import com.example.myapplication.navigation.CodeEditor.controller
 import com.example.myapplication.navigation.Console.adapterConsole
 
@@ -58,41 +61,60 @@ import com.example.myapplication.navigation.Console.adapterConsole
 fun Tab.TabContent() {
     var newBlock: Block
 
-    val catalog = listOf("Defined variable", "Undefined variable", "Reassignment", "Condition If",
-    "While cycle", "Output", "Defined array", "Undefined array", "Condition If Else", "For cycle")
+    val catalog = listOf(
+        "Defined variable",
+        "Undefined variable",
+        "Reassignment",
+        "Condition If",
+        "While cycle",
+        "Output",
+        "Defined array",
+        "Undefined array",
+        "Condition If Else",
+        "For cycle"
+    )
 
-    when(options.title) {
+    when (options.title) {
         "CodeEditor" -> {
             val context = LocalContext.current
             val blocksDeleted = remember { mutableStateOf(false) }
             LazyColumn(
                 horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.fillMaxSize()) {
-                itemsIndexed(controller.blockList) {
-                    index, item ->
+                modifier = Modifier.fillMaxSize()
+            ) {
+                itemsIndexed(controller.blockList) { index, item ->
                     BlockItem(item)
                 }
             }
-            Box(modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight(0.92f)
-                .padding(15.dp), contentAlignment = Alignment.BottomEnd) {
-                IconButton(onClick = {
-                    Toast.makeText(context, "Blocks have been deleted!", Toast.LENGTH_SHORT).show()
-                    controller.blockList.clear()
-                    blocksDeleted.value = true
-                },
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(0.92f)
+                    .padding(15.dp), contentAlignment = Alignment.BottomEnd
+            ) {
+                IconButton(
+                    onClick = {
+                        Toast.makeText(context, "Blocks have been deleted!", Toast.LENGTH_SHORT)
+                            .show()
+                        controller.blockList.clear()
+                        blocksDeleted.value = true
+                    },
                     modifier = Modifier
                         .then(Modifier.size(40.dp)),
                 ) {
-                    Icon(Icons.Default.Delete, contentDescription = "content description", tint = Color.Magenta)
+                    Icon(
+                        Icons.Default.Delete,
+                        contentDescription = "content description",
+                        tint = Color.Magenta
+                    )
                 }
             }
         }
+
         "Console" -> {
             val context = LocalContext.current
-            LazyColumn(){itemsIndexed(adapterConsole.outputMessageList){
-                index, item ->
+            LazyColumn() {
+                itemsIndexed(adapterConsole.outputMessageList) { index, item ->
                     Text(
                         ">>> $item",
                         modifier = Modifier
@@ -102,75 +124,94 @@ fun Tab.TabContent() {
                     )
                 }
             }
-            Box(modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight(0.92f)
-                .padding(15.dp), contentAlignment = Alignment.BottomEnd) {
-                IconButton(onClick = {
-                    Toast.makeText(context, "Program Started!", Toast.LENGTH_SHORT).show()
-                },
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(0.92f)
+                    .padding(15.dp), contentAlignment = Alignment.BottomEnd
+            ) {
+                IconButton(
+                    onClick = {
+                        Toast.makeText(context, "Program Started!", Toast.LENGTH_SHORT).show()
+                        runProgram(controller.blockList)
+                    },
                     modifier = Modifier
                         .then(Modifier.size(40.dp))
                 ) {
-                    Icon(Icons.Default.PlayArrow, contentDescription = "content description", tint = Color.Green)
+                    Icon(
+                        Icons.Default.PlayArrow,
+                        contentDescription = "content description",
+                        tint = Color.Green
+                    )
                 }
             }
         }
+
         "BlockCreationMenu" -> {
             val context = LocalContext.current
             LazyColumn(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.fillMaxSize()
             ) {
-                itemsIndexed(catalog) {
-                    index, item ->
-                    Button(onClick = {
-                        Toast.makeText(context, "Block created!", Toast.LENGTH_SHORT).show()
-                        when(item) {
-                            "Defined variable" -> {
-                                newBlock = DefiniedVar()
-                                controller.blockList.add(newBlock)
-                            }
-                            "Undefined variable" -> {
-                                newBlock = UndefiniedVariable()
-                                controller.blockList.add(newBlock)
-                            }
-                            "Reassignment" -> {
-                                newBlock = Equation()
-                                controller.blockList.add(newBlock)
-                            }
-                            "Condition If" -> {
+                itemsIndexed(catalog) { index, item ->
+                    Button(
+                        onClick = {
+                            Toast.makeText(context, "Block created!", Toast.LENGTH_SHORT).show()
+                            when (item) {
+                                "Defined variable" -> {
+                                    newBlock = DefiniedVar()
+                                    controller.blockList.add(newBlock)
+                                }
+
+                                "Undefined variable" -> {
+                                    newBlock = UndefiniedVariable()
+                                    controller.blockList.add(newBlock)
+                                }
+
+                                "Reassignment" -> {
+                                    newBlock = Equation()
+                                    controller.blockList.add(newBlock)
+                                }
+
+                                "Condition If" -> {
 //                                newBlock = ConditionIf()
 //                                blocksList.add(newBlock)
-                            }
-                            "While cycle" -> {
+                                }
+
+                                "While cycle" -> {
 //                                newBlock = ()
 //                                blocksList.add(newBlock)
-                            }
-                            "Output" -> {
-                                newBlock = OutputBlock()
-                                controller.blockList.add(newBlock)
-                            }
-                            "Defined array" -> {
+                                }
+
+                                "Output" -> {
+                                    newBlock = OutputBlock()
+                                    controller.blockList.add(newBlock)
+                                }
+
+                                "Defined array" -> {
 //                                newBlock = ()
 //                                blocksList.add(newBlock)
-                            }
-                            "Undefined array" -> {
+                                }
+
+                                "Undefined array" -> {
 //                                newBlock = ()
 //                                blocksList.add(newBlock)
-                            }
-                            "Condition If Else" -> {
+                                }
+
+                                "Condition If Else" -> {
 //                                newBlock = ()
 //                                blocksList.add(newBlock)
-                            }
-                            "For cycle" -> {
+                                }
+
+                                "For cycle" -> {
 //                                newBlock = ()
 //                                blocksList.add(newBlock)
+                                }
                             }
-                        }
-                    }, modifier = Modifier
-                        .fillMaxWidth(1f)
-                        .padding(10.dp)) {
+                        }, modifier = Modifier
+                            .fillMaxWidth(1f)
+                            .padding(10.dp)
+                    ) {
                         Text(item, fontSize = 20.sp)
                     }
                 }
@@ -178,4 +219,3 @@ fun Tab.TabContent() {
         }
     }
 }
-

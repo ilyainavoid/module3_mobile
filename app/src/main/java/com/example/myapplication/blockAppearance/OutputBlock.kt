@@ -30,6 +30,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.myapplication.logic.OutputBlock
+import com.example.myapplication.logic.runProgram
+import com.example.myapplication.navigation.CodeEditor.controller
 
 @Composable
 fun DrawOutputBlock(block: OutputBlock) {
@@ -111,7 +113,7 @@ fun DrawOutputBlock(block: OutputBlock) {
                         IconButton(onClick = {
                             block.inputEditLeft = message.value
                             block.inputEditRight = variables.value
-                            block.runBlock()
+                            runProgram(controller.blockList)
                             //showExtendView.value = false
                         }) {
                             Icon(

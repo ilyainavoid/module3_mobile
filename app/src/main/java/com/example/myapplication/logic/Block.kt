@@ -1,9 +1,10 @@
 package com.example.myapplication.logic
+
 import com.example.myapplication.MainActivity
 import java.util.*
 
 open class Block {
-    companion object{
+    companion object {
         var blockStack: Stack<Block> = Stack()
         var container: Container = Container()
         var isWorking = false
@@ -19,9 +20,6 @@ open class Block {
 
     var inputForCycle: String = ""
     var indexListBlocks = 0
-    //lateinit var adapterConsole: ConsoleAdapter
-    //lateinit var adapterBlocks: BlocksAdapter
-    //lateinit var holder: BlocksAdapter.ViewHolder
     var activity: MainActivity? = null
 
     lateinit var begin: Begin
@@ -29,6 +27,8 @@ open class Block {
     lateinit var exit: Exit
     lateinit var beginElse: Begin
     lateinit var endElse: End
+    lateinit var adapterConsole: ConsoleAdapter
+
     // Флаг. В while, if, if-else заставляет выполниться initVar() единожды
     // т.к. он перезаписывает блоки выхода Exit
     var initFlag = true
@@ -60,21 +60,17 @@ open class Block {
             when {
                 nextBlock == null -> {
                     isWorking = false
-                    //activity?.disconnectAllBlocks()
-                    //adapterConsole.addMessage(programFinish(status))
-                    //adapterBlocks.notifyItemChanged(indexListBlocks)
                 }
+
                 status == OK() -> {
                     blockStack.push(nextBlock)
                 }
+
                 else -> {
                     isWorking = false
-                    //activity?.disconnectAllBlocks()
-                    //adapterConsole.addMessage(programFinish(status))
-                    //adapterBlocks.notifyItemChanged(indexListBlocks)
+                    adapterConsole.addMessage(programFinish(status))
                 }
             }
         }
     }
-
 }

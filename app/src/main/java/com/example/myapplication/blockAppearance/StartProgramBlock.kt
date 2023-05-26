@@ -20,12 +20,24 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun StartProgramBlockAppearance() {
     Card(
-        modifier = Modifier.fillMaxWidth().padding(10.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(10.dp),
         shape = RoundedCornerShape(5.dp),
         elevation = CardDefaults.cardElevation(10.dp)
     ) {
-        Box(modifier = Modifier.fillMaxWidth().background(Brush.horizontalGradient(listOf(Color.Red, Color.Yellow))), contentAlignment = Alignment.Center) {
-            Text("The start of the program", fontStyle = FontStyle(0), color = Color.White, modifier = Modifier.padding(5.dp))
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Brush.horizontalGradient(listOf(Color.Red, Color.Yellow))),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                "The start of the program",
+                fontStyle = FontStyle(0),
+                color = Color.White,
+                modifier = Modifier.padding(5.dp)
+            )
         }
     }
 }
@@ -34,12 +46,24 @@ fun StartProgramBlockAppearance() {
 @Composable
 fun PreviewStartProgramBlockAppearance() {
     Card(
-        modifier = Modifier.fillMaxWidth().padding(10.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(10.dp),
         shape = RoundedCornerShape(5.dp),
         elevation = CardDefaults.cardElevation(10.dp)
     ) {
-        Box(modifier = Modifier.fillMaxWidth().background(Brush.horizontalGradient(listOf(Color.Red, Color.Yellow))), contentAlignment = Alignment.Center) {
-            Text("The start of the program", fontStyle = FontStyle(0), color = Color.White, modifier = Modifier.padding(5.dp))
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Brush.horizontalGradient(listOf(Color.Red, Color.Yellow))),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                "The start of the program",
+                fontStyle = FontStyle(0),
+                color = Color.White,
+                modifier = Modifier.padding(5.dp)
+            )
         }
     }
 }

@@ -43,7 +43,8 @@ class ConditionIfElse : Block() {
         // Соединяем выход с блоком, после if-else, если это не блок логики if-else
         nextBlock?.let {
             if (nextBlock != begin && nextBlock != beginElse && nextBlock != exit &&
-                nextBlock != end && nextBlock != endElse && nextBlock != null)
+                nextBlock != end && nextBlock != endElse && nextBlock != null
+            )
                 connectBlocks(exit, it, clear = false)
         }
 

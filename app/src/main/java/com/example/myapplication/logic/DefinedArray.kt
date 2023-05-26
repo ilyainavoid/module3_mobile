@@ -1,6 +1,6 @@
 package com.example.myapplication.logic
 
-class DefinedArray: Block() {
+class DefinedArray : Block() {
     private var size: Int = 0
     private var name: String = ""
     private var values: String = ""
@@ -11,6 +11,7 @@ class DefinedArray: Block() {
     init {
         type = "DefinedArray"
     }
+
     override fun initVariables() {
         inputName = inputEditLeft
         inputSize = inputEditMiddle

@@ -1,12 +1,12 @@
 package com.example.myapplication.logic
 
-class StartProgram:Block() {
+class StartProgram : Block() {
     init {
         type = "EntryPoint"
     }
 
     override fun run() {
-
+        adapterConsole.addMessage(programStart())
         container.clearContainer()
         container.clearContainer()
     }

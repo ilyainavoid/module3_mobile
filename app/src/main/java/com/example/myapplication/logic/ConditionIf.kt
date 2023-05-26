@@ -1,24 +1,25 @@
 package com.example.myapplication.logic
 
-class ConditionIf: Block() {
+class ConditionIf : Block() {
     private var expressionLeft: String = ""
     private var expressionRight: String = ""
     private var comparator: String = ">="
 
-    init{
+    init {
         type = "ConditionIf"
     }
-    override fun initVariables()
-    {
-       expressionLeft = inputEditLeft
-       expressionRight = inputEditRight
-       comparator = inputComparator
+
+    override fun initVariables() {
+        expressionLeft = inputEditLeft
+        expressionRight = inputEditRight
+        comparator = inputComparator
         //добавить с консолью
         exit = Exit()
 
         initFlag = false
 
     }
+
     override fun runBlock() {
         super.runBlock()
         // Выполняем initVar() единожды

@@ -1,11 +1,12 @@
 package com.example.myapplication.logic
 
-class UndefiniedVariable: Block() {
+class UndefiniedVariable : Block() {
     private var variables: List<String> = listOf()
+
     //удалить после защиты
     var names: String = ""
 
-    init{
+    init {
         type = "UndefinedVariable"
     }
 
@@ -17,12 +18,12 @@ class UndefiniedVariable: Block() {
         super.runBlock()
         initVariables()
         var flag = true
-        for (variable in variables){
-            if (!variableCheck(variable)){
+        for (variable in variables) {
+            if (!variableCheck(variable)) {
                 flag = false
             }
         }
-        if (flag){
+        if (flag) {
             container.setNullVars(variables)
         }
     }

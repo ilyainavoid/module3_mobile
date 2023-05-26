@@ -16,9 +16,9 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
 
-object BlockCreationMenu : Tab{
+object BlockCreationMenu : Tab {
     override val options: TabOptions
-    @Composable
+        @Composable
         get() {
             val MyAppIcons = Icons.Filled
             val icon = rememberVectorPainter(MyAppIcons.Add)

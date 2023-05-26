@@ -2,7 +2,7 @@ package com.example.myapplication.logic
 
 import androidx.compose.foundation.interaction.HoverInteraction
 
-class WhileCycle: Block() {
+class WhileCycle : Block() {
     private var leftExpression: String = ""
     private var rightExpression: String = ""
     private var comparator: String = "=="
@@ -10,7 +10,11 @@ class WhileCycle: Block() {
     //для цикла for
 
 
-    fun setBlockInput( expressionLeft: String, expressionRight: String, expressionComparator: String = "==") {
+    fun setBlockInput(
+        expressionLeft: String,
+        expressionRight: String,
+        expressionComparator: String = "=="
+    ) {
         leftExpression = expressionLeft
         rightExpression = expressionRight
         comparator = expressionComparator
@@ -25,40 +29,41 @@ class WhileCycle: Block() {
         rightExpression = inputEditRight
         comparator = inputComparator
 
+        begin.adapterConsole = this.adapterConsole
+        end.adapterConsole = this.adapterConsole
         exit = Exit()
-        //добавить всмете с консолью
+        exit.adapterConsole = this.adapterConsole
         initFlag = false
     }
 
     override fun runBlock() {
         super.runBlock()
 
-        if(initFlag) initVariables()
-        connectBlocks(end,this, clear = false)
+        if (initFlag) initVariables()
+        connectBlocks(end, this, clear = false)
 
         nextBlock?.let {
-            if(nextBlock != begin && nextBlock != exit && nextBlock != end && nextBlock != null){
+            if (nextBlock != begin && nextBlock != exit && nextBlock != end && nextBlock != null) {
                 connectBlocks(exit, it, clear = false)
             }
         }
 
-        if(comparator !in allComparators){
+        if (comparator !in allComparators) {
             status = invalidComparator()
         }
         val leftCalculated = calculate(accessContainer(), leftExpression)
         val rightCalculated = calculate(accessContainer(), rightExpression)
 
-        if(leftCalculated.first != OK() || rightCalculated.first != OK()){
-            status = if(rightCalculated.first == OK()){
+        if (leftCalculated.first != OK() || rightCalculated.first != OK()) {
+            status = if (rightCalculated.first == OK()) {
                 leftCalculated.first
-            } else{
+            } else {
                 rightCalculated.first
             }
         }
 
-        if(expressionComparator(leftCalculated.second, rightCalculated.second, comparator)){
+        if (expressionComparator(leftCalculated.second, rightCalculated.second, comparator)) {
             connectBlocks(this, begin, clear = false)
-        }
-        else connectBlocks(this, exit,clear = false )
+        } else connectBlocks(this, exit, clear = false)
     }
 }
