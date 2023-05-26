@@ -61,7 +61,7 @@ fun ifBlockAppearance(block:ConditionIf) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color.DarkGray), contentAlignment = Alignment.Center
+                    .background(Color.Black), contentAlignment = Alignment.Center
             ) {
                 Row(modifier = Modifier.fillMaxWidth()) {
                     Box(
@@ -142,7 +142,7 @@ fun ExtendedIfBlockAppearance(block: ConditionIf) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color.DarkGray), contentAlignment = Alignment.Center
+                    .background(Color.Black), contentAlignment = Alignment.Center
             ) {
                 Row() {
                     Box(
@@ -169,7 +169,7 @@ fun ExtendedIfBlockAppearance(block: ConditionIf) {
                                             .fillMaxWidth(.1f), contentAlignment = Alignment.Center
                                     ) {
                                         Text(
-                                            "?",
+                                            block.inputComparator,
                                             fontStyle = FontStyle(0),
                                             color = Color.White,
                                             modifier = Modifier.padding(5.dp)
@@ -210,7 +210,7 @@ fun ExtendedIfBlockAppearance(block: ConditionIf) {
                                             fontSize = 20.sp
                                         ),
                                         modifier = Modifier
-                                            .background(Color.DarkGray)
+                                            .background(Color.Black)
                                             .padding(10.dp)
                                     )
                                 }
@@ -233,7 +233,7 @@ fun ExtendedIfBlockAppearance(block: ConditionIf) {
                                             fontSize = 20.sp
                                         ),
                                         modifier = Modifier
-                                            .background(Color.DarkGray)
+                                            .background(Color.Black)
                                             .padding(10.dp)
                                     )
                                 }
@@ -264,27 +264,28 @@ fun ExtendedIfBlockAppearance(block: ConditionIf) {
                                     ) {
                                         DropdownMenuItem(
                                             text = { Text("==") },
-                                            onClick = { Toast.makeText(context, "==", Toast.LENGTH_SHORT).show() }
+                                            onClick = { Toast.makeText(context, "==", Toast.LENGTH_SHORT).show();block.inputComparator="==" }
                                         )
                                         DropdownMenuItem(
                                             text = { Text(">=") },
-                                            onClick = { Toast.makeText(context, ">=", Toast.LENGTH_SHORT).show() }
+                                            onClick = { Toast.makeText(context, ">=", Toast.LENGTH_SHORT).show();block.inputComparator=">=" }
                                         )
                                         DropdownMenuItem(
                                             text = { Text("<=") },
-                                            onClick = { Toast.makeText(context, "<=", Toast.LENGTH_SHORT).show() }
+                                            onClick = { Toast.makeText(context, "<=", Toast.LENGTH_SHORT).show();block.inputComparator="<=" }
                                         )
                                         DropdownMenuItem(
                                             text = { Text(">") },
-                                            onClick = { Toast.makeText(context, ">", Toast.LENGTH_SHORT).show() }
+                                            onClick = { Toast.makeText(context, ">", Toast.LENGTH_SHORT).show();block.inputComparator=">" }
                                         )
                                         DropdownMenuItem(
                                             text = { Text("<") },
-                                            onClick = { Toast.makeText(context, "<", Toast.LENGTH_SHORT).show() }
+                                            onClick = { Toast.makeText(context, "<", Toast.LENGTH_SHORT).show(); block.inputComparator="<"}
                                         )
                                         DropdownMenuItem(
                                             text = { Text("!=") },
-                                            onClick = { Toast.makeText(context, "!=", Toast.LENGTH_SHORT).show() }
+                                            onClick = { Toast.makeText(context, "!=", Toast.LENGTH_SHORT).show();block.inputComparator="!=" }
+
                                         )
                                     }
                                 }
@@ -297,8 +298,10 @@ fun ExtendedIfBlockAppearance(block: ConditionIf) {
                             .fillMaxWidth(1f), contentAlignment = Alignment.Center
                     ) {
                         IconButton(onClick = {
-
+                            block.inputEditLeft = leftPart.value
+                            block.inputEditRight = rightPart.value
                             showExtendView.value = false
+                            block.runBlock()
                         }) {
                             Icon(
                                 Icons.Outlined.Done,
@@ -330,7 +333,7 @@ fun PreviewIfBlock() {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color.DarkGray), contentAlignment = Alignment.Center
+                .background(Color.Black), contentAlignment = Alignment.Center
         ) {
             Row(modifier = Modifier.fillMaxWidth()) {
 
@@ -408,7 +411,7 @@ fun PreviewExtendedIfBlock() {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color.DarkGray), contentAlignment = Alignment.Center
+                    .background(Color.Black), contentAlignment = Alignment.Center
             ) {
                 Row() {
                     Box(
@@ -476,7 +479,7 @@ fun PreviewExtendedIfBlock() {
                                             fontSize = 20.sp
                                         ),
                                         modifier = Modifier
-                                            .background(Color.DarkGray)
+                                            .background(Color.Black)
                                             .padding(10.dp)
                                     )
                                 }
@@ -499,7 +502,7 @@ fun PreviewExtendedIfBlock() {
                                             fontSize = 20.sp
                                         ),
                                         modifier = Modifier
-                                            .background(Color.DarkGray)
+                                            .background(Color.Black)
                                             .padding(10.dp)
                                     )
                                 }
