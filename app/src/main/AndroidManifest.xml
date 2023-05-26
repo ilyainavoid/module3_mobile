@@ -28,7 +28,8 @@
         <activity
             android:name="com.example.myapplication.ProjectWorkspaceActivity"
             android:exported="true"
-            android:theme="@style/Theme.MyApplication">
+            android:theme="@style/Theme.MyApplication"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
