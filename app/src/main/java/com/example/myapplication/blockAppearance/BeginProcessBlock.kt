@@ -11,16 +11,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.myapplication.logic.Begin
 
 @Composable
-fun drawBeginProcessBlock() {
+fun DrawBeginProcessBlock(block: Begin) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -42,10 +40,4 @@ fun drawBeginProcessBlock() {
             )
         }
     }
-}
-
-@Preview
-@Composable
-fun previewDrawBeginProcessBlock() {
-    drawBeginProcessBlock()
 }

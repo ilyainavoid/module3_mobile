@@ -95,7 +95,7 @@ fun Tab.TabContent() {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .fillMaxHeight(0.92f)
+                    .fillMaxHeight(1f)
                     .padding(15.dp), contentAlignment = Alignment.BottomEnd
             ) {
                 IconButton(

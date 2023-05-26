@@ -3,8 +3,10 @@ package com.example.myapplication
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.ExperimentalMaterialApi
@@ -39,7 +41,9 @@ class ProjectWorkspaceActivity : ComponentActivity() {
                     TabNavigator(CodeEditor) {
                         Scaffold(
                             content = { PaddingValues ->
-                                CurrentTab()
+                                Box(modifier = Modifier.padding(PaddingValues)) {
+                                    CurrentTab()
+                                }
                             },
                             bottomBar = {
                                 BottomNavigation {

@@ -29,6 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.myapplication.logic.Equation
+import com.example.myapplication.navigation.CodeEditor.controller
 
 @Composable
 fun DrawAssignmentBlock(block: Equation) {
@@ -92,10 +93,13 @@ fun DrawAssignmentBlock(block: Equation) {
                         modifier = Modifier
                             .fillMaxWidth(1f), contentAlignment = Alignment.Center
                     ) {
-                        IconButton(onClick = { showExtendView.value = true }) {
+                        IconButton(onClick = {
+                            showExtendView.value = true
+                            controller.containerStorage.deleteVariable(block.variable)
+                        }) {
                             Icon(
                                 Icons.Outlined.Settings,
-                                contentDescription = "Информация о приложении",
+                                contentDescription = "",
                                 modifier = Modifier.size(20.dp),
                                 tint = Color.White
                             )
@@ -249,11 +253,4 @@ fun DrawExtendedAssignmentBlock(block: Equation) {
     } else {
         DrawAssignmentBlock(block)
     }
-}
-
-
-@Preview
-@Composable
-fun PreviewAssignmentBlockAppearance() {
-    DrawAssignmentBlock(block = Equation())
 }
