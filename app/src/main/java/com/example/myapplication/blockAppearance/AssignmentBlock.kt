@@ -29,9 +29,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.myapplication.logic.Equation
+import com.example.myapplication.navigation.CodeEditor.controller
 
 @Composable
-fun AssignmentBlockAppearance(block: Equation) {
+fun DrawAssignmentBlock(block: Equation) {
     val showExtendView = remember { mutableStateOf(false) }
 
     val variableName = remember { mutableStateOf(block.inputEditLeft) }
@@ -92,10 +93,13 @@ fun AssignmentBlockAppearance(block: Equation) {
                         modifier = Modifier
                             .fillMaxWidth(1f), contentAlignment = Alignment.Center
                     ) {
-                        IconButton(onClick = { showExtendView.value = true }) {
+                        IconButton(onClick = {
+                            showExtendView.value = true
+                            controller.containerStorage.deleteVariable(block.variable)
+                        }) {
                             Icon(
                                 Icons.Outlined.Settings,
-                                contentDescription = "Информация о приложении",
+                                contentDescription = "",
                                 modifier = Modifier.size(20.dp),
                                 tint = Color.White
                             )
@@ -105,12 +109,12 @@ fun AssignmentBlockAppearance(block: Equation) {
             }
         }
     } else {
-        ExtendedAssignmentBlockAppearance(block)
+        DrawExtendedAssignmentBlock(block)
     }
 }
 
 @Composable
-fun ExtendedAssignmentBlockAppearance(block: Equation) {
+fun DrawExtendedAssignmentBlock(block: Equation) {
     val variableName = remember { mutableStateOf("") }
     val variableValue = remember { mutableStateOf("") }
 
@@ -247,193 +251,6 @@ fun ExtendedAssignmentBlockAppearance(block: Equation) {
             }
         }
     } else {
-        AssignmentBlockAppearance(block)
-    }
-}
-
-
-@Preview
-@Composable
-fun PreviewAssignmentBlockAppearance() {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(10.dp),
-        shape = RoundedCornerShape(5.dp),
-        elevation = CardDefaults.cardElevation(10.dp)
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.DarkGray), contentAlignment = Alignment.Center
-        ) {
-            Row(modifier = Modifier.fillMaxWidth()) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth(.3f), contentAlignment = Alignment.CenterEnd
-                ) {
-                    Text(
-                        "VariableName",
-                        fontStyle = FontStyle(0),
-                        color = Color.White,
-                        modifier = Modifier.padding(5.dp)
-                    )
-                }
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth(.1f), contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        "=",
-                        fontStyle = FontStyle(0),
-                        color = Color.White,
-                        modifier = Modifier.padding(5.dp)
-                    )
-                }
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth(.8f), contentAlignment = Alignment.CenterStart
-                ) {
-                    Text(
-                        "VariableValue",
-                        fontStyle = FontStyle(0),
-                        color = Color.White,
-                        modifier = Modifier.padding(5.dp)
-                    )
-                }
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth(1f), contentAlignment = Alignment.Center
-                ) {
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Icon(
-                            Icons.Outlined.Settings,
-                            contentDescription = "Информация о приложении",
-                            modifier = Modifier.size(20.dp),
-                            tint = Color.White
-                        )
-                    }
-                }
-            }
-        }
-    }
-}
-
-@Preview
-@Composable
-fun PreviewExtendedAssignmentBlockAppearance() {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(10.dp),
-        shape = RoundedCornerShape(5.dp),
-        elevation = CardDefaults.cardElevation(10.dp)
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.DarkGray), contentAlignment = Alignment.Center
-        ) {
-            Row() {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth(0.875f), contentAlignment = Alignment.Center
-                ) {
-                    Column() {
-                        Box() {
-                            Row(modifier = Modifier.fillMaxWidth()) {
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth(.3f), contentAlignment = Alignment.CenterEnd
-                                ) {
-                                    Text(
-                                        "VariableName",
-                                        fontStyle = FontStyle(0),
-                                        color = Color.White,
-                                        modifier = Modifier.padding(5.dp)
-                                    )
-                                }
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth(.1f), contentAlignment = Alignment.Center
-                                ) {
-                                    Text(
-                                        "=",
-                                        fontStyle = FontStyle(0),
-                                        color = Color.White,
-                                        modifier = Modifier.padding(5.dp)
-                                    )
-                                }
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth(.8f), contentAlignment = Alignment.CenterStart
-                                ) {
-                                    Text(
-                                        "VariableValue",
-                                        fontStyle = FontStyle(0),
-                                        color = Color.White,
-                                        modifier = Modifier.padding(5.dp)
-                                    )
-                                }
-                            }
-                        }
-                        Box(
-                            modifier = Modifier.fillMaxWidth(),
-                            contentAlignment = Alignment.CenterStart
-                        ) {
-                            Row() {
-                                Text(
-                                    "Input name:",
-                                    fontStyle = FontStyle(0),
-                                    color = Color.White,
-                                    modifier = Modifier.padding(5.dp)
-                                )
-                                val textState = remember { mutableStateOf("") }
-                                TextField(
-                                    value = textState.value,
-                                    onValueChange = {
-                                        textState.value = it
-                                    },
-                                    textStyle = TextStyle(color = Color.Black, fontSize = 20.sp),
-                                    modifier = Modifier.background(Color.DarkGray)
-                                )
-                            }
-                        }
-                        Box() {
-                            Row() {
-                                Text(
-                                    "Input value:",
-                                    fontStyle = FontStyle(0),
-                                    color = Color.White,
-                                    modifier = Modifier.padding(5.dp)
-                                )
-                                val textState = remember { mutableStateOf("") }
-                                TextField(
-                                    value = textState.value,
-                                    onValueChange = {
-                                        textState.value = it
-                                    },
-                                    textStyle = TextStyle(color = Color.Black, fontSize = 20.sp),
-                                    modifier = Modifier.background(Color.DarkGray)
-                                )
-                            }
-                        }
-                    }
-                }
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth(1f), contentAlignment = Alignment.Center
-                ) {
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Icon(
-                            Icons.Outlined.Done,
-                            contentDescription = "Информация о приложении",
-                            modifier = Modifier.size(20.dp),
-                            tint = Color.White
-                        )
-                    }
-                }
-            }
-        }
+        DrawAssignmentBlock(block)
     }
 }

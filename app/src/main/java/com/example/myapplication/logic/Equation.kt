@@ -1,10 +1,10 @@
 package com.example.myapplication.logic
 
 class Equation : Block() {
-    private var inputValue: String = ""
-    private var inputVariable: String = ""
-    private var value: Int = 0
-    private var variable: String = ""
+    var inputValue: String = ""
+    var inputVariable: String = ""
+    var value: Int = 0
+    var variable: String = ""
 
     init {
         type = "Equation"

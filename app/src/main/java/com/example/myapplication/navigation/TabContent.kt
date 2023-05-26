@@ -46,6 +46,7 @@ import cafe.adriel.voyager.navigator.tab.Tab
 import com.example.myapplication.blockAppearance.BlockItem
 import com.example.myapplication.logic.Block
 import com.example.myapplication.logic.BlocksController
+import com.example.myapplication.logic.ConditionIf
 import com.example.myapplication.logic.DefiniedVar
 import com.example.myapplication.logic.End
 import com.example.myapplication.logic.Equation
@@ -92,7 +93,7 @@ fun Tab.TabContent() {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .fillMaxHeight(0.92f)
+                    .fillMaxHeight(1f)
                     .padding(15.dp), contentAlignment = Alignment.BottomEnd
             ) {
                 IconButton(
@@ -149,8 +150,8 @@ fun Tab.TabContent() {
                                 }
 
                                 "Condition If" -> {
-//                                newBlock = ConditionIf()
-//                                blocksList.add(newBlock)
+                                    newBlock = ConditionIf()
+                                    controller.blockList.add(newBlock)
                                 }
 
                                 "While cycle" -> {
@@ -217,7 +218,7 @@ fun ConsoleContent() {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(0.92f)
+            .fillMaxHeight(1f)
             .padding(15.dp), contentAlignment = Alignment.BottomEnd
     ) {
         IconButton(

@@ -40,7 +40,7 @@ import androidx.compose.material.icons.outlined.Add
 
 
 @Composable
-fun ifBlockAppearance(block:ConditionIf) {
+fun DrawIfBlock(block:ConditionIf) {
     val showExtendView = remember { mutableStateOf(false) }
 
     val leftPart = remember { mutableStateOf(block.inputEditLeft) }
@@ -102,6 +102,7 @@ fun ifBlockAppearance(block:ConditionIf) {
                             .fillMaxWidth(1f), contentAlignment = Alignment.Center
                     ) {
                         IconButton(onClick = {
+                            showExtendView.value = true
                         }) {
                             Icon(
                                 Icons.Outlined.Settings,
@@ -116,12 +117,12 @@ fun ifBlockAppearance(block:ConditionIf) {
         }
         }
      else {
-        ExtendedIfBlockAppearance(block)
+        DrawExtendedIfBlock(block)
     }
 }
 
 @Composable
-fun ExtendedIfBlockAppearance(block: ConditionIf) {
+fun DrawExtendedIfBlock(block: ConditionIf) {
 
     val comparator = remember { mutableStateOf("")}
     val showExtendView = remember { mutableStateOf(true) }
@@ -301,7 +302,7 @@ fun ExtendedIfBlockAppearance(block: ConditionIf) {
                             block.inputEditLeft = leftPart.value
                             block.inputEditRight = rightPart.value
                             showExtendView.value = false
-                            block.runBlock()
+                            //block.runBlock()
                         }) {
                             Icon(
                                 Icons.Outlined.Done,
@@ -316,271 +317,20 @@ fun ExtendedIfBlockAppearance(block: ConditionIf) {
         }
     }
      else {
-        ifBlockAppearance(block)
+        DrawIfBlock(block)
     }
 }
 
 @Preview
 @Composable
 fun PreviewIfBlock() {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(10.dp),
-        shape = RoundedCornerShape(5.dp),
-        elevation = CardDefaults.cardElevation(10.dp)
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.Black), contentAlignment = Alignment.Center
-        ) {
-            Row(modifier = Modifier.fillMaxWidth()) {
-
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth(.3f), contentAlignment = Alignment.CenterEnd
-                ) {
-                    Text(
-                        "Left part",
-                        fontStyle = FontStyle(0),
-                        color = Color.White,
-                        modifier = Modifier.padding(5.dp)
-                    )
-                }
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth(.1f), contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        "==",
-                        fontStyle = FontStyle(0),
-                        color = Color.White,
-                        modifier = Modifier.padding(5.dp)
-                    )
-                }
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth(.8f), contentAlignment = Alignment.CenterStart
-                ) {
-                    Text(
-                        "Right part",
-                        fontStyle = FontStyle(0),
-                        color = Color.White,
-                        modifier = Modifier.padding(5.dp)
-                    )
-                }
-
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth(1f), contentAlignment = Alignment.Center
-                ) {
-                    IconButton(onClick = {
-                    }) {
-                        Icon(
-                            Icons.Outlined.Settings,
-                            contentDescription = "Информация о приложении",
-                            modifier = Modifier.size(20.dp),
-                            tint = Color.White
-                        )
-                    }
-                }
-            }
-        }
-    }
+    DrawIfBlock(block = ConditionIf())
 }
 
 @Preview
 @Composable
 fun PreviewExtendedIfBlock() {
-
-    val leftPart = remember { mutableStateOf("") }
-    val rightPart = remember { mutableStateOf("") }
-    val context = LocalContext.current
-    var expanded by remember { mutableStateOf(false) }
-    val showExtendView = remember { mutableStateOf(true) }
-
-    if (showExtendView.value) {
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(10.dp),
-            shape = RoundedCornerShape(5.dp),
-            elevation = CardDefaults.cardElevation(20.dp)
-        ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(Color.Black), contentAlignment = Alignment.Center
-            ) {
-                Row() {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth(0.875f), contentAlignment = Alignment.Center
-                    ) {
-                        Column() {
-                            Box() {
-                                Row(modifier = Modifier.fillMaxWidth()) {
-                                    Box(
-                                        modifier = Modifier
-                                            .fillMaxWidth(.3f),
-                                        contentAlignment = Alignment.CenterEnd
-                                    ) {
-                                        Text(
-                                            "Left part",
-                                            fontStyle = FontStyle(0),
-                                            color = Color.White,
-                                            modifier = Modifier.padding(5.dp)
-                                        )
-                                    }
-                                    Box(
-                                        modifier = Modifier
-                                            .fillMaxWidth(.1f), contentAlignment = Alignment.Center
-                                    ) {
-                                        Text(
-                                            "?",
-                                            fontStyle = FontStyle(0),
-                                            color = Color.White,
-                                            modifier = Modifier.padding(5.dp)
-                                        )
-                                    }
-                                    Box(
-                                        modifier = Modifier
-                                            .fillMaxWidth(.8f),
-                                        contentAlignment = Alignment.CenterStart
-                                    ) {
-                                        Text(
-                                            "Right part",
-                                            fontStyle = FontStyle(0),
-                                            color = Color.White,
-                                            modifier = Modifier.padding(5.dp)
-                                        )
-                                    }
-                                }
-                            }
-                            Box(
-                                modifier = Modifier.fillMaxWidth(),
-                                contentAlignment = Alignment.CenterStart
-                            ) {
-                                Row() {
-                                    Text(
-                                        "Input left:",
-                                        fontStyle = FontStyle(0),
-                                        color = Color.White,
-                                        modifier = Modifier.padding(5.dp)
-                                    )
-                                    TextField(
-                                        value = leftPart.value,
-                                        onValueChange = {
-                                            leftPart.value = it
-                                        },
-                                        textStyle = TextStyle(
-                                            color = Color.Black,
-                                            fontSize = 20.sp
-                                        ),
-                                        modifier = Modifier
-                                            .background(Color.Black)
-                                            .padding(10.dp)
-                                    )
-                                }
-                            }
-                            Box() {
-                                Row() {
-                                    Text(
-                                        "Input right:",
-                                        fontStyle = FontStyle(0),
-                                        color = Color.White,
-                                        modifier = Modifier.padding(5.dp)
-                                    )
-                                    TextField(
-                                        value = rightPart.value,
-                                        onValueChange = {
-                                            rightPart.value = it
-                                        },
-                                        textStyle = TextStyle(
-                                            color = Color.Black,
-                                            fontSize = 20.sp
-                                        ),
-                                        modifier = Modifier
-                                            .background(Color.Black)
-                                            .padding(10.dp)
-                                    )
-                                }
-                            }
-                            Box(modifier = Modifier
-                                .fillMaxWidth(1f)
-                                .wrapContentSize(Alignment.TopStart))
-                            {
-                                Row()
-                                {
-                                    Text(
-                                        "Input comparator",
-                                        fontStyle = FontStyle(0),
-                                        color = Color.White,
-                                        modifier = Modifier.padding(5.dp)
-                                    )
-                                    IconButton(onClick = { expanded = !expanded }) {
-                                        Icon(
-                                            Icons.Outlined.Add,
-                                            contentDescription = "",
-                                            modifier = Modifier.size(20.dp),
-                                            tint = Color.White
-                                        )
-                                    }
-                                    DropdownMenu(
-                                        expanded = expanded,
-                                        onDismissRequest = { expanded = false }
-                                    ) {
-                                        DropdownMenuItem(
-                                            text = { Text("==") },
-                                            onClick = { Toast.makeText(context, "==", Toast.LENGTH_SHORT).show() }
-                                        )
-                                        DropdownMenuItem(
-                                            text = { Text(">=") },
-                                            onClick = { Toast.makeText(context, ">=", Toast.LENGTH_SHORT).show() }
-                                        )
-                                        DropdownMenuItem(
-                                            text = { Text("<=") },
-                                            onClick = { Toast.makeText(context, "<=", Toast.LENGTH_SHORT).show() }
-                                        )
-                                        DropdownMenuItem(
-                                            text = { Text(">") },
-                                            onClick = { Toast.makeText(context, ">", Toast.LENGTH_SHORT).show() }
-                                        )
-                                        DropdownMenuItem(
-                                            text = { Text("<") },
-                                            onClick = { Toast.makeText(context, "<", Toast.LENGTH_SHORT).show() }
-                                        )
-                                        DropdownMenuItem(
-                                            text = { Text("!=") },
-                                            onClick = { Toast.makeText(context, "!=", Toast.LENGTH_SHORT).show() }
-                                        )
-                                    }
-                                }
-
-                            }
-                        }
-                    }
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth(1f), contentAlignment = Alignment.Center
-                    ) {
-                        IconButton(onClick = {
-
-                            showExtendView.value = false
-                        }) {
-                            Icon(
-                                Icons.Outlined.Done,
-                                contentDescription = "",
-                                modifier = Modifier.size(20.dp),
-                                tint = Color.White
-                            )
-                        }
-                    }
-                }
-            }
-        }
-    }
+    DrawExtendedIfBlock(block = ConditionIf())
 }
 
 
