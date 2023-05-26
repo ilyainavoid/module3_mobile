@@ -68,6 +68,8 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
 
+    implementation("org.burnoutcrew.composereorderable:reorderable:0.9.6")
+
     // Navigator
     implementation("cafe.adriel.voyager:voyager-navigator:1.0.0-rc06")
 
