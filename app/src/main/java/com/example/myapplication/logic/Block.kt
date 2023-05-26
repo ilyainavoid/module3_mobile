@@ -1,12 +1,13 @@
 package com.example.myapplication.logic
 
 import com.example.myapplication.MainActivity
+import com.example.myapplication.navigation.CodeEditor
 import java.util.*
 
 open class Block {
     companion object {
         var blockStack: Stack<Block> = Stack()
-        var container: Container = Container()
+        var container = CodeEditor.controller.containerStorage
         var isWorking = false
     }
 

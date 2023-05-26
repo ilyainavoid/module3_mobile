@@ -30,7 +30,7 @@ fun expressionComparator(numberLeft: Int, numberRight: Int, comparator: String):
     return false
 }
 
-fun runProgram(blockList: List<Block>){
+fun runProgram(){
     Console.adapterConsole.clearMessageList()
     var isOk = true
     for (i in 0 until CodeEditor.controller.blockList.size) {

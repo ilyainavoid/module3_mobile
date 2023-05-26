@@ -113,8 +113,7 @@ fun DrawOutputBlock(block: OutputBlock) {
                         IconButton(onClick = {
                             block.inputEditLeft = message.value
                             block.inputEditRight = variables.value
-                            runProgram(controller.blockList)
-                            //showExtendView.value = false
+                            block.runBlock()
                         }) {
                             Icon(
                                 Icons.Outlined.Done,

@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.myapplication.logic.Block
 import com.example.myapplication.logic.DefiniedVar
+import com.example.myapplication.navigation.CodeEditor.controller
 
 @Composable
 fun DefinedVariableBlockAppearance(block: DefiniedVar) {
@@ -97,10 +98,13 @@ fun DefinedVariableBlockAppearance(block: DefiniedVar) {
                         modifier = Modifier
                             .fillMaxWidth(1f), contentAlignment = Alignment.Center
                     ) {
-                        IconButton(onClick = { showExtendView.value = true }) {
+                        IconButton(onClick = {
+                            controller.containerStorage.deleteVariable(block.variable)
+                            showExtendView.value = true
+                        }) {
                             Icon(
                                 Icons.Outlined.Settings,
-                                contentDescription = "Информация о приложении",
+                                contentDescription = "",
                                 modifier = Modifier.size(20.dp),
                                 tint = Color.White
                             )
@@ -310,7 +314,8 @@ fun PreviewDefaultBlock() {
                     modifier = Modifier
                         .fillMaxWidth(1f), contentAlignment = Alignment.Center
                 ) {
-                    IconButton(onClick = { /*TODO*/ }) {
+                    IconButton(onClick = {
+                    }) {
                         Icon(
                             Icons.Outlined.Settings,
                             contentDescription = "Информация о приложении",

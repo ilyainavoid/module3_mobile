@@ -47,6 +47,7 @@ import com.example.myapplication.blockAppearance.BlockItem
 import com.example.myapplication.logic.Block
 import com.example.myapplication.logic.BlocksController
 import com.example.myapplication.logic.DefiniedVar
+import com.example.myapplication.logic.End
 import com.example.myapplication.logic.Equation
 import com.example.myapplication.logic.OK
 import com.example.myapplication.logic.OutputBlock
@@ -71,7 +72,8 @@ fun Tab.TabContent() {
         "Defined array",
         "Undefined array",
         "Condition If Else",
-        "For cycle"
+        "For cycle",
+        "Exit"
     )
 
     when (options.title) {
@@ -133,7 +135,7 @@ fun Tab.TabContent() {
                 IconButton(
                     onClick = {
                         Toast.makeText(context, "Program Started!", Toast.LENGTH_SHORT).show()
-                        runProgram(controller.blockList)
+                        runProgram()
                     },
                     modifier = Modifier
                         .then(Modifier.size(40.dp))
@@ -206,6 +208,11 @@ fun Tab.TabContent() {
                                 "For cycle" -> {
 //                                newBlock = ()
 //                                blocksList.add(newBlock)
+                                }
+
+                                "End" -> {
+                                    newBlock = End()
+                                    controller.blockList.add(newBlock)
                                 }
                             }
                         }, modifier = Modifier
