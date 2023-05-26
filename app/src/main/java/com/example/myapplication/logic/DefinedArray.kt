@@ -1,9 +1,9 @@
 package com.example.myapplication.logic
 
 class DefinedArray : Block() {
-    private var size: Int = 0
-    private var name: String = ""
-    private var values: String = ""
+    var size: Int = 0
+    var name: String = ""
+    var values: String = ""
     private var inputSize: String = ""
     private var inputValues: String = ""
     private var inputName: String = ""

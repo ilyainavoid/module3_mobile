@@ -28,16 +28,17 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.myapplication.logic.Equation
+import com.example.myapplication.logic.DefinedArray
+import com.example.myapplication.navigation.CodeEditor
 
 @Composable
-fun DrawAssignmentBlock(block: Equation) {
+fun DrawDefinedArrayBlock(block: DefinedArray) {
     val showExtendView = remember { mutableStateOf(false) }
 
-    val variableName = remember { mutableStateOf(block.inputEditLeft) }
-    val variableValue = remember { mutableStateOf(block.inputEditRight) }
-
-    if (variableName.value == "" && variableValue.value == "") {
+    val arrayName = remember { mutableStateOf(block.inputEditLeft) }
+    val arraySize = remember { mutableStateOf(block.inputEditMiddle) }
+    val arrayValues = remember { mutableStateOf(block.inputEditRight) }
+    if (arrayName.value == "" && arraySize.value == "" && arrayValues.value == "") {
         showExtendView.value = true
     }
 
@@ -54,48 +55,68 @@ fun DrawAssignmentBlock(block: Equation) {
                     .fillMaxWidth()
                     .background(Color.DarkGray), contentAlignment = Alignment.Center
             ) {
-                Row(modifier = Modifier.fillMaxWidth()) {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth(.3f), contentAlignment = Alignment.CenterEnd
-                    ) {
-                        Text(
-                            block.inputEditLeft,
-                            fontStyle = FontStyle(0),
-                            color = Color.White,
-                            modifier = Modifier.padding(5.dp)
-                        )
-                    }
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth(.1f), contentAlignment = Alignment.Center
-                    ) {
-                        Text(
-                            "=",
-                            fontStyle = FontStyle(0),
-                            color = Color.White,
-                            modifier = Modifier.padding(5.dp)
-                        )
-                    }
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth(.8f), contentAlignment = Alignment.CenterStart
-                    ) {
-                        Text(
-                            block.inputEditRight,
-                            fontStyle = FontStyle(0),
-                            color = Color.White,
-                            modifier = Modifier.padding(5.dp)
-                        )
+                Row(Modifier.fillMaxWidth()) {
+                    Column(modifier = Modifier.fillMaxWidth(.9f)) {
+                        Row(modifier = Modifier.fillMaxWidth()) {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth(.3f), contentAlignment = Alignment.CenterEnd
+                            ) {
+                                Text(
+                                    "${block.name}[ ],",
+                                    fontStyle = FontStyle(0),
+                                    color = Color.White,
+                                    modifier = Modifier.padding(5.dp)
+                                )
+                            }
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth(.4f), contentAlignment = Alignment.Center
+                            ) {
+                                Text(
+                                    " size =",
+                                    fontStyle = FontStyle(0),
+                                    color = Color.White,
+                                    modifier = Modifier.padding(5.dp)
+                                )
+                            }
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth(.8f), contentAlignment = Alignment.CenterStart
+                            ) {
+                                Text(
+                                    block.size.toString(),
+                                    fontStyle = FontStyle(0),
+                                    color = Color.White,
+                                    modifier = Modifier.padding(5.dp)
+                                )
+                            }
+                        }
+                        Row(modifier = Modifier.fillMaxWidth()) {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth(), contentAlignment = Alignment.Center
+                            ) {
+                                Text(
+                                    "values: ${block.values}",
+                                    fontStyle = FontStyle(0),
+                                    color = Color.White,
+                                    modifier = Modifier.padding(5.dp)
+                                )
+                            }
+                        }
                     }
                     Box(
                         modifier = Modifier
                             .fillMaxWidth(1f), contentAlignment = Alignment.Center
                     ) {
-                        IconButton(onClick = { showExtendView.value = true }) {
+                        IconButton(onClick = {
+                            CodeEditor.controller.containerStorage.deleteArray(block.name)
+                            showExtendView.value = true
+                        }) {
                             Icon(
                                 Icons.Outlined.Settings,
-                                contentDescription = "Информация о приложении",
+                                contentDescription = "",
                                 modifier = Modifier.size(20.dp),
                                 tint = Color.White
                             )
@@ -105,15 +126,15 @@ fun DrawAssignmentBlock(block: Equation) {
             }
         }
     } else {
-        DrawExtendedAssignmentBlock(block)
+        DrawExtendedDefinedArrayBlock(block)
     }
 }
 
 @Composable
-fun DrawExtendedAssignmentBlock(block: Equation) {
-    val variableName = remember { mutableStateOf(block.inputEditLeft) }
-    val variableValue = remember { mutableStateOf(block.inputEditRight) }
-
+fun DrawExtendedDefinedArrayBlock(block: DefinedArray) {
+    val arrayName = remember { mutableStateOf(block.inputEditLeft) }
+    val arraySize = remember { mutableStateOf(block.inputEditRight) }
+    val arrayValues = remember { mutableStateOf(block.inputEditRight) }
     val showExtendView = remember { mutableStateOf(true) }
 
     if (showExtendView.value) {
@@ -143,7 +164,7 @@ fun DrawExtendedAssignmentBlock(block: Equation) {
                                         contentAlignment = Alignment.CenterEnd
                                     ) {
                                         Text(
-                                            block.inputEditLeft,
+                                            "${block.name}[ ],",
                                             fontStyle = FontStyle(0),
                                             color = Color.White,
                                             modifier = Modifier.padding(5.dp)
@@ -151,10 +172,10 @@ fun DrawExtendedAssignmentBlock(block: Equation) {
                                     }
                                     Box(
                                         modifier = Modifier
-                                            .fillMaxWidth(.1f), contentAlignment = Alignment.Center
+                                            .fillMaxWidth(.4f), contentAlignment = Alignment.Center
                                     ) {
                                         Text(
-                                            "=",
+                                            " size = ",
                                             fontStyle = FontStyle(0),
                                             color = Color.White,
                                             modifier = Modifier.padding(5.dp)
@@ -166,7 +187,7 @@ fun DrawExtendedAssignmentBlock(block: Equation) {
                                         contentAlignment = Alignment.CenterStart
                                     ) {
                                         Text(
-                                            block.inputEditRight.toString(),
+                                            block.size.toString(),
                                             fontStyle = FontStyle(0),
                                             color = Color.White,
                                             modifier = Modifier.padding(5.dp)
@@ -179,39 +200,62 @@ fun DrawExtendedAssignmentBlock(block: Equation) {
                                 contentAlignment = Alignment.CenterStart
                             ) {
                                 Row() {
-                                    Text(
-                                        "Input name:",
-                                        fontStyle = FontStyle(0),
-                                        color = Color.White,
-                                        modifier = Modifier.padding(5.dp)
-                                    )
-                                    TextField(
-                                        value = variableName.value,
-                                        onValueChange = {
-                                            variableName.value = it
-                                        },
-                                        textStyle = TextStyle(
-                                            color = Color.Black,
-                                            fontSize = 20.sp
-                                        ),
-                                        modifier = Modifier
-                                            .background(Color.DarkGray)
-                                            .padding(10.dp)
-                                    )
+                                    Column(modifier = Modifier.fillMaxWidth(.5f)) {
+                                        Text(
+                                            "Input name:",
+                                            fontStyle = FontStyle(0),
+                                            color = Color.White,
+                                            modifier = Modifier.padding(5.dp)
+                                        )
+                                        TextField(
+                                            value = arrayName.value,
+                                            onValueChange = {
+                                                arrayName.value = it
+                                            },
+                                            textStyle = TextStyle(
+                                                color = Color.Black,
+                                                fontSize = 20.sp
+                                            ),
+                                            modifier = Modifier
+                                                .background(Color.DarkGray)
+                                                .padding(10.dp)
+                                        )
+                                    }
+                                    Column() {
+                                        Text(
+                                            "Input size:",
+                                            fontStyle = FontStyle(0),
+                                            color = Color.White,
+                                            modifier = Modifier.padding(5.dp)
+                                        )
+                                        TextField(
+                                            value = arraySize.value,
+                                            onValueChange = {
+                                                arraySize.value = it
+                                            },
+                                            textStyle = TextStyle(
+                                                color = Color.Black,
+                                                fontSize = 20.sp
+                                            ),
+                                            modifier = Modifier
+                                                .background(Color.DarkGray)
+                                                .padding(10.dp)
+                                        )
+                                    }
                                 }
                             }
                             Box() {
                                 Row() {
                                     Text(
-                                        "Input value:",
+                                        "Input values:",
                                         fontStyle = FontStyle(0),
                                         color = Color.White,
                                         modifier = Modifier.padding(5.dp)
                                     )
                                     TextField(
-                                        value = variableValue.value,
+                                        value = arrayValues.value,
                                         onValueChange = {
-                                            variableValue.value = it
+                                            arrayValues.value = it
                                         },
                                         textStyle = TextStyle(
                                             color = Color.Black,
@@ -230,9 +274,10 @@ fun DrawExtendedAssignmentBlock(block: Equation) {
                             .fillMaxWidth(1f), contentAlignment = Alignment.Center
                     ) {
                         IconButton(onClick = {
-                            block.inputEditLeft = variableName.value
-                            block.inputEditRight = variableValue.value
-                            //block.runBlock()
+                            block.inputEditLeft = arrayName.value
+                            block.inputEditMiddle = arraySize.value
+                            block.inputEditRight = arrayValues.value
+                            block.runBlock()
                             showExtendView.value = false
                         }) {
                             Icon(
@@ -247,13 +292,13 @@ fun DrawExtendedAssignmentBlock(block: Equation) {
             }
         }
     } else {
-        DrawAssignmentBlock(block)
+        DrawDefinedArrayBlock(block)
     }
 }
 
 
 @Preview
 @Composable
-fun PreviewAssignmentBlockAppearance() {
-    DrawAssignmentBlock(block = Equation())
+fun DrawDefinedArray() {
+    DrawDefinedArrayBlock(block = DefinedArray())
 }

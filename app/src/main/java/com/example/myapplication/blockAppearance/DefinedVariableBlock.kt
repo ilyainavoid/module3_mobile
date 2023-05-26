@@ -121,8 +121,8 @@ fun DefinedVariableBlockAppearance(block: DefiniedVar) {
 @Composable
 fun ExtendedDefinedVariableBlockAppearance(block: DefiniedVar) {
 
-    val variableName = remember { mutableStateOf("") }
-    val variableValue = remember { mutableStateOf("") }
+    val variableName = remember { mutableStateOf(block.inputEditLeft) }
+    val variableValue = remember { mutableStateOf(block.inputEditRight) }
 
     val showExtendView = remember { mutableStateOf(true) }
 
@@ -176,7 +176,7 @@ fun ExtendedDefinedVariableBlockAppearance(block: DefiniedVar) {
                                         contentAlignment = Alignment.CenterStart
                                     ) {
                                         Text(
-                                            block.value.toString(),
+                                            block.inputEditRight,
                                             fontStyle = FontStyle(0),
                                             color = Color.White,
                                             modifier = Modifier.padding(5.dp)
@@ -242,7 +242,7 @@ fun ExtendedDefinedVariableBlockAppearance(block: DefiniedVar) {
                         IconButton(onClick = {
                             block.inputEditLeft = variableName.value
                             block.inputEditRight = variableValue.value
-                            block.runBlock()
+                            //block.runBlock()
                             showExtendView.value = false
                         }) {
                             Icon(

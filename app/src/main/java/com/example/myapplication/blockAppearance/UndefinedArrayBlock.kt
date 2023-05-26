@@ -28,16 +28,18 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.myapplication.logic.Equation
+import com.example.myapplication.logic.DefinedArray
+import com.example.myapplication.logic.UndefinedArray
+import com.example.myapplication.navigation.CodeEditor
 
 @Composable
-fun DrawAssignmentBlock(block: Equation) {
+fun UndefinedArrayBlockAppearance(block: UndefinedArray) {
     val showExtendView = remember { mutableStateOf(false) }
 
-    val variableName = remember { mutableStateOf(block.inputEditLeft) }
-    val variableValue = remember { mutableStateOf(block.inputEditRight) }
+    val arrayName = remember { mutableStateOf(block.inputEditLeft) }
+    val arraySize = remember { mutableStateOf(block.inputEditRight) }
 
-    if (variableName.value == "" && variableValue.value == "") {
+    if (arrayName.value == "" && arraySize.value == "") {
         showExtendView.value = true
     }
 
@@ -60,7 +62,7 @@ fun DrawAssignmentBlock(block: Equation) {
                             .fillMaxWidth(.3f), contentAlignment = Alignment.CenterEnd
                     ) {
                         Text(
-                            block.inputEditLeft,
+                            "${block.name}[ ],",
                             fontStyle = FontStyle(0),
                             color = Color.White,
                             modifier = Modifier.padding(5.dp)
@@ -68,10 +70,10 @@ fun DrawAssignmentBlock(block: Equation) {
                     }
                     Box(
                         modifier = Modifier
-                            .fillMaxWidth(.1f), contentAlignment = Alignment.Center
+                            .fillMaxWidth(.4f), contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            "=",
+                            " size =",
                             fontStyle = FontStyle(0),
                             color = Color.White,
                             modifier = Modifier.padding(5.dp)
@@ -82,7 +84,7 @@ fun DrawAssignmentBlock(block: Equation) {
                             .fillMaxWidth(.8f), contentAlignment = Alignment.CenterStart
                     ) {
                         Text(
-                            block.inputEditRight,
+                            block.size.toString(),
                             fontStyle = FontStyle(0),
                             color = Color.White,
                             modifier = Modifier.padding(5.dp)
@@ -92,10 +94,13 @@ fun DrawAssignmentBlock(block: Equation) {
                         modifier = Modifier
                             .fillMaxWidth(1f), contentAlignment = Alignment.Center
                     ) {
-                        IconButton(onClick = { showExtendView.value = true }) {
+                        IconButton(onClick = {
+                            CodeEditor.controller.containerStorage.deleteArray(block.name)
+                            showExtendView.value = true
+                        }) {
                             Icon(
                                 Icons.Outlined.Settings,
-                                contentDescription = "Информация о приложении",
+                                contentDescription = "",
                                 modifier = Modifier.size(20.dp),
                                 tint = Color.White
                             )
@@ -105,14 +110,14 @@ fun DrawAssignmentBlock(block: Equation) {
             }
         }
     } else {
-        DrawExtendedAssignmentBlock(block)
+        ExtendedUndefinedArrayBlockAppearance(block)
     }
 }
 
 @Composable
-fun DrawExtendedAssignmentBlock(block: Equation) {
-    val variableName = remember { mutableStateOf(block.inputEditLeft) }
-    val variableValue = remember { mutableStateOf(block.inputEditRight) }
+fun ExtendedUndefinedArrayBlockAppearance(block: UndefinedArray) {
+    val arrayName = remember { mutableStateOf(block.inputEditLeft) }
+    val arraySize = remember { mutableStateOf(block.inputEditRight) }
 
     val showExtendView = remember { mutableStateOf(true) }
 
@@ -143,7 +148,7 @@ fun DrawExtendedAssignmentBlock(block: Equation) {
                                         contentAlignment = Alignment.CenterEnd
                                     ) {
                                         Text(
-                                            block.inputEditLeft,
+                                            "${block.name}[ ],",
                                             fontStyle = FontStyle(0),
                                             color = Color.White,
                                             modifier = Modifier.padding(5.dp)
@@ -151,10 +156,10 @@ fun DrawExtendedAssignmentBlock(block: Equation) {
                                     }
                                     Box(
                                         modifier = Modifier
-                                            .fillMaxWidth(.1f), contentAlignment = Alignment.Center
+                                            .fillMaxWidth(.4f), contentAlignment = Alignment.Center
                                     ) {
                                         Text(
-                                            "=",
+                                            " size = ",
                                             fontStyle = FontStyle(0),
                                             color = Color.White,
                                             modifier = Modifier.padding(5.dp)
@@ -166,7 +171,7 @@ fun DrawExtendedAssignmentBlock(block: Equation) {
                                         contentAlignment = Alignment.CenterStart
                                     ) {
                                         Text(
-                                            block.inputEditRight.toString(),
+                                            block.size.toString(),
                                             fontStyle = FontStyle(0),
                                             color = Color.White,
                                             modifier = Modifier.padding(5.dp)
@@ -186,9 +191,9 @@ fun DrawExtendedAssignmentBlock(block: Equation) {
                                         modifier = Modifier.padding(5.dp)
                                     )
                                     TextField(
-                                        value = variableName.value,
+                                        value = arrayName.value,
                                         onValueChange = {
-                                            variableName.value = it
+                                            arrayName.value = it
                                         },
                                         textStyle = TextStyle(
                                             color = Color.Black,
@@ -203,15 +208,15 @@ fun DrawExtendedAssignmentBlock(block: Equation) {
                             Box() {
                                 Row() {
                                     Text(
-                                        "Input value:",
+                                        "Input size:",
                                         fontStyle = FontStyle(0),
                                         color = Color.White,
                                         modifier = Modifier.padding(5.dp)
                                     )
                                     TextField(
-                                        value = variableValue.value,
+                                        value = arraySize.value,
                                         onValueChange = {
-                                            variableValue.value = it
+                                            arraySize.value = it
                                         },
                                         textStyle = TextStyle(
                                             color = Color.Black,
@@ -230,9 +235,9 @@ fun DrawExtendedAssignmentBlock(block: Equation) {
                             .fillMaxWidth(1f), contentAlignment = Alignment.Center
                     ) {
                         IconButton(onClick = {
-                            block.inputEditLeft = variableName.value
-                            block.inputEditRight = variableValue.value
-                            //block.runBlock()
+                            block.inputEditLeft = arrayName.value
+                            block.inputEditRight = arraySize.value
+                            block.runBlock()
                             showExtendView.value = false
                         }) {
                             Icon(
@@ -247,13 +252,19 @@ fun DrawExtendedAssignmentBlock(block: Equation) {
             }
         }
     } else {
-        DrawAssignmentBlock(block)
+        UndefinedArrayBlockAppearance(block)
     }
 }
 
+@Preview
+@Composable
+fun DrawIndefinedArray() {
+    ExtendedUndefinedArrayBlockAppearance(block = UndefinedArray())
+
+}
 
 @Preview
 @Composable
-fun PreviewAssignmentBlockAppearance() {
-    DrawAssignmentBlock(block = Equation())
+fun SmallDrawIndefinedArray() {
+    UndefinedArrayBlockAppearance(block = UndefinedArray())
 }

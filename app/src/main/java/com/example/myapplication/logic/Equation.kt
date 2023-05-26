@@ -3,7 +3,7 @@ package com.example.myapplication.logic
 class Equation : Block() {
     private var inputValue: String = ""
     private var inputVariable: String = ""
-    private var value: Int = 0
+    var value: Int = 0
     private var variable: String = ""
 
     init {

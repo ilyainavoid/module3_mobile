@@ -46,12 +46,15 @@ import cafe.adriel.voyager.navigator.tab.Tab
 import com.example.myapplication.blockAppearance.BlockItem
 import com.example.myapplication.logic.Block
 import com.example.myapplication.logic.BlocksController
+import com.example.myapplication.logic.ConditionIf
+import com.example.myapplication.logic.DefinedArray
 import com.example.myapplication.logic.DefiniedVar
 import com.example.myapplication.logic.End
 import com.example.myapplication.logic.Equation
 import com.example.myapplication.logic.OK
 import com.example.myapplication.logic.OutputBlock
 import com.example.myapplication.logic.StartProgram
+import com.example.myapplication.logic.UndefinedArray
 import com.example.myapplication.logic.UndefiniedVariable
 import com.example.myapplication.logic.disconnectBlocks
 import com.example.myapplication.logic.runProgram
@@ -149,8 +152,8 @@ fun Tab.TabContent() {
                                 }
 
                                 "Condition If" -> {
-//                                newBlock = ConditionIf()
-//                                blocksList.add(newBlock)
+                                    newBlock = ConditionIf()
+                                    controller.blockList.add(newBlock)
                                 }
 
                                 "While cycle" -> {
@@ -164,13 +167,13 @@ fun Tab.TabContent() {
                                 }
 
                                 "Defined array" -> {
-//                                newBlock = ()
-//                                blocksList.add(newBlock)
+                                    newBlock = DefinedArray()
+                                    controller.blockList.add(newBlock)
                                 }
 
                                 "Undefined array" -> {
-//                                newBlock = ()
-//                                blocksList.add(newBlock)
+                                    newBlock = UndefinedArray()
+                                    controller.blockList.add(newBlock)
                                 }
 
                                 "Condition If Else" -> {

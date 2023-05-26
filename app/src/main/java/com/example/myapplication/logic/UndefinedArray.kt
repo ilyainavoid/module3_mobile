@@ -1,30 +1,42 @@
 package com.example.myapplication.logic
 
 class UndefinedArray : Block() {
-    private var inputNames: List<String> = listOf()
+    var size: Int = 0
+    var name: String = ""
+    private var inputSize: String = ""
+    private var inputName: String = ""
 
     init {
-        type = "UndefinedVariable"
+        type = "UndefinedArray"
     }
 
     override fun initVariables() {
-        inputNames = toVarList(inputEditLeft)
+        inputName = inputEditLeft
+        inputSize = inputEditRight
     }
 
     override fun runBlock() {
         super.runBlock()
         initVariables()
-        var flag = true
-        for (el in inputNames) {
-            if (!variableCheck(el)) {
-                status = incorrectNaming(el)
-                flag = false
-            }
-            if (container.isArrayExist(el)) {
-                status = typeMismatchArray(el)
-                flag = false
-            }
+        val calcSize = calculate(container, inputSize)
+
+        if (!variableCheck(inputName)) {
+            status = incorrectNaming(inputName)
+            return
         }
-        if (flag) container.setNullVars(inputNames)
+        if (calcSize.first != OK() || calcSize.second < 1) {
+            status = incorrectSize(inputSize)
+            return
+        }
+        if (container.isVariableExist(inputName)) {
+            status = typeMismatchVariable(inputName)
+            return
+        }
+        name = inputName
+        size = calcSize.second
+        container.createArray(name, size)
+        for (i in 0 until size) {
+            container.setArrayValue(name, i, 0)
+        }
     }
 }
