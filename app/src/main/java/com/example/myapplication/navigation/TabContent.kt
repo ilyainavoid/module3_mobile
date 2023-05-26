@@ -17,13 +17,17 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.DismissDirection
+import androidx.compose.material.DismissValue
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.IconButton
+import androidx.compose.material.SwipeToDismiss
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.outlined.Done
+import androidx.compose.material.rememberDismissState
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -197,6 +201,7 @@ fun BlockCreationMenuContent() {
     }
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun CodeEditorContent() {
     val context = LocalContext.current
@@ -215,16 +220,40 @@ fun CodeEditorContent() {
             .detectReorderAfterLongPress(state)
     ) {
         itemsIndexed(controller.blockList) { index, item ->
-            ReorderableItem(state, key = item) {
-                isDragging ->
-                val elevation = animateDpAsState(if (isDragging) 30.dp else 0.dp)
-                Column(
-                    modifier = Modifier
-                        .shadow(elevation.value)
-                ) {
-                    BlockItem(item)
+            val stateOfSwipe = rememberDismissState(
+                confirmStateChange = {
+                    if (it == DismissValue.DismissedToStart) {
+                        controller.blockList.remove(item)
+                    }
+                    true
                 }
-            }
+            )
+            SwipeToDismiss(state = stateOfSwipe, background = {
+                val color = when (stateOfSwipe.dismissDirection) {
+                    DismissDirection.EndToStart -> Color.Black
+                    DismissDirection.StartToEnd -> Color.Transparent
+                    null -> Color.Transparent
+                }
+                Box(modifier = Modifier.fillMaxSize().background(color = color).padding(10.dp)) {
+                    Icon(imageVector = Icons.Default.Delete,
+                    contentDescription = null,
+                    tint = Color.Gray,
+                    modifier = Modifier.align(Alignment.CenterEnd))
+                }
+            },
+                dismissContent = {
+                    ReorderableItem(state, key = item) {
+                            isDragging ->
+                        val elevation = animateDpAsState(if (isDragging) 30.dp else 0.dp)
+                        Column(
+                            modifier = Modifier
+                                .shadow(elevation.value)
+                        ) {
+                            BlockItem(item)
+                        }
+                    }
+                },
+                directions = setOf(DismissDirection.EndToStart))
         }
     }
     Box(
@@ -273,7 +302,7 @@ fun ConsoleContent() {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(0.92f)
+            .fillMaxHeight(1f)
             .padding(15.dp), contentAlignment = Alignment.BottomEnd
     ) {
         IconButton(

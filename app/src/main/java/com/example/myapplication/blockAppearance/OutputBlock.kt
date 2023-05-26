@@ -41,15 +41,14 @@ fun DrawOutputBlock(block: OutputBlock) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(10.dp)
-            .background(Color.DarkGray),
+            .padding(10.dp),
         shape = RoundedCornerShape(5.dp),
         elevation = CardDefaults.cardElevation(10.dp)
     ) {
         Box(
             modifier = Modifier
                 .fillMaxWidth(1f)
-                .padding(10.dp),
+                .background(Color.DarkGray),
             contentAlignment = Alignment.Center
         ) {
             Row(
@@ -68,7 +67,8 @@ fun DrawOutputBlock(block: OutputBlock) {
                             Text(
                                 "Message",
                                 textAlign = TextAlign.Center,
-                                modifier = Modifier.fillMaxWidth(1f)
+                                modifier = Modifier.fillMaxWidth(1f),
+                                color = Color.White
                             )
                             TextField(
                                 value = message.value,
@@ -91,7 +91,8 @@ fun DrawOutputBlock(block: OutputBlock) {
                             Text(
                                 "Variable",
                                 textAlign = TextAlign.Center,
-                                modifier = Modifier.fillMaxWidth(1f)
+                                modifier = Modifier.fillMaxWidth(1f),
+                                color = Color.White
                             )
                             TextField(
                                 value = variables.value,
@@ -107,8 +108,7 @@ fun DrawOutputBlock(block: OutputBlock) {
                     }
                     Box(
                         modifier = Modifier
-                            .fillMaxWidth(1f)
-                            .background(Color.Blue),
+                            .fillMaxWidth(1f),
                         contentAlignment = Alignment.Center
                     ) {
                         IconButton(onClick = {
