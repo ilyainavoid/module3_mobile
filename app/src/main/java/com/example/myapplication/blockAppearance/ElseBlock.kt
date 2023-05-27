@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun DrawElsetBlock() {
+fun DrawElseBlock() {
     Card(
         modifier = Modifier
             .fillMaxWidth(.8f)
@@ -51,5 +51,5 @@ fun DrawElsetBlock() {
 @Preview
 @Composable
 fun PreviewElseBlock() {
-    DrawElsetBlock()
+    DrawElseBlock()
 }

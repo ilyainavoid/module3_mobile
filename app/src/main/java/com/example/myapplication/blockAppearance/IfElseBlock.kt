@@ -1,5 +1,7 @@
 package com.example.myapplication.blockAppearance
 
+import com.example.myapplication.logic.ConditionIfElse
+
 
 import androidx.compose.runtime.setValue
 import androidx.compose.foundation.background
@@ -35,14 +37,14 @@ import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.foundation.layout.wrapContentSize
-import com.example.myapplication.logic.WhileCycle
+import com.example.myapplication.logic.ConditionIf
 import android.widget.Toast
 import androidx.compose.material.icons.outlined.Add
 
 
 
 @Composable
-fun DrawWhileBlock(block:WhileCycle) {
+fun DrawIfElseBlock(block:ConditionIfElse) {
     val showExtendView = remember { mutableStateOf(false) }
 
     val leftPart = remember { mutableStateOf(block.inputEditLeft) }
@@ -63,15 +65,15 @@ fun DrawWhileBlock(block:WhileCycle) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color(7, 18, 115)), contentAlignment = Alignment.Center
+                    .background(Color(153, 29, 5)), contentAlignment = Alignment.Center
             ) {
                 Row(modifier = Modifier.fillMaxWidth()) {
                     Box(
                         modifier = Modifier
-                            .fillMaxWidth(.2f), contentAlignment = Alignment.Center
+                            .fillMaxWidth(.1f), contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            "While",
+                            "If",
                             fontStyle = FontStyle(0),
                             color = Color.White,
                             modifier = Modifier.padding(10.dp)
@@ -79,7 +81,7 @@ fun DrawWhileBlock(block:WhileCycle) {
                     }
                     Box(
                         modifier = Modifier
-                            .fillMaxWidth(.35f), contentAlignment = Alignment.CenterEnd
+                            .fillMaxWidth(.3f), contentAlignment = Alignment.CenterEnd
                     ) {
                         Text(
                             leftPart.value,
@@ -90,7 +92,7 @@ fun DrawWhileBlock(block:WhileCycle) {
                     }
                     Box(
                         modifier = Modifier
-                            .fillMaxWidth(.25f), contentAlignment = Alignment.Center
+                            .fillMaxWidth(.4f), contentAlignment = Alignment.Center
                     ) {
                         Text(
                             comparator.value,
@@ -119,7 +121,7 @@ fun DrawWhileBlock(block:WhileCycle) {
                         }) {
                             Icon(
                                 Icons.Outlined.Settings,
-                                contentDescription = "Информация о приложении",
+                                contentDescription = "",
                                 modifier = Modifier.size(20.dp),
                                 tint = Color.White
                             )
@@ -130,15 +132,15 @@ fun DrawWhileBlock(block:WhileCycle) {
         }
     }
     else {
-        DrawExtededWhileBlock(block)
+        DrawExtendedIfElseBlock(block)
     }
 }
 
 @Composable
-fun DrawExtededWhileBlock(block: WhileCycle) {
+fun DrawExtendedIfElseBlock(block: ConditionIfElse) {
     val showExtendView = remember { mutableStateOf(true) }
-    val leftPart = remember { mutableStateOf("") }
-    val rightPart = remember { mutableStateOf("") }
+    val leftPart = remember { mutableStateOf(block.inputEditLeft) }
+    val rightPart = remember { mutableStateOf(block.inputEditRight) }
     val context = LocalContext.current
     var expanded by remember { mutableStateOf(false) }
 
@@ -154,7 +156,7 @@ fun DrawExtededWhileBlock(block: WhileCycle) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color(7, 18, 115)), contentAlignment = Alignment.Center
+                    .background(Color(153, 29, 5)), contentAlignment = Alignment.Center
             ) {
                 Row() {
                     Box(
@@ -166,7 +168,7 @@ fun DrawExtededWhileBlock(block: WhileCycle) {
                                 Row(modifier = Modifier.fillMaxWidth()) {
                                     Box(
                                         modifier = Modifier
-                                            .fillMaxWidth(.5f),
+                                            .fillMaxWidth(.3f),
                                         contentAlignment = Alignment.CenterEnd
                                     ) {
                                         Text(
@@ -218,11 +220,11 @@ fun DrawExtededWhileBlock(block: WhileCycle) {
                                             leftPart.value = it
                                         },
                                         textStyle = TextStyle(
-                                            color = Color(7, 18, 115),
+                                            color = Color(153, 29, 5),
                                             fontSize = 20.sp
                                         ),
                                         modifier = Modifier
-                                            .background(Color(7, 18, 115))
+                                            .background(Color(153, 29, 5))
                                             .padding(10.dp)
                                     )
                                 }
@@ -241,11 +243,11 @@ fun DrawExtededWhileBlock(block: WhileCycle) {
                                             rightPart.value = it
                                         },
                                         textStyle = TextStyle(
-                                            color = Color(7, 18, 115),
+                                            color = Color(153, 29, 5),
                                             fontSize = 20.sp
                                         ),
                                         modifier = Modifier
-                                            .background(Color(7, 18, 115))
+                                            .background(Color(153, 29, 5))
                                             .padding(10.dp)
                                     )
                                 }
@@ -328,18 +330,105 @@ fun DrawExtededWhileBlock(block: WhileCycle) {
         }
     }
     else {
-        DrawWhileBlock(block)
+        DrawIfElseBlock(block)
     }
 }
 
 @Preview
 @Composable
-fun PreviewWhileBlock() {
-    DrawWhileBlock(block = WhileCycle())
+fun PreviewIfElseBlock() {
+    DrawIfElseBlock(block = ConditionIfElse())
 }
 
 @Preview
 @Composable
-fun PreviewExtededWhileBlock() {
-    DrawExtededWhileBlock(block = WhileCycle())
+fun PreviewExtendedIfElseBlock() {
+    DrawExtendedIfElseBlock(block = ConditionIfElse())
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

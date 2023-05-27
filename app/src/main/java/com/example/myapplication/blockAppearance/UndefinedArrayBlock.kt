@@ -39,9 +39,9 @@ fun DrawUndefinedArrayBlock(block: UndefinedArray) {
     val arrayName = remember { mutableStateOf(block.inputEditLeft) }
     val arraySize = remember { mutableStateOf(block.inputEditRight) }
 
-//    if (arrayName.value == "" && arraySize.value == "") {
-//        showExtendView.value = true
-//    }
+    if (arrayName.value == "" && arraySize.value == "") {
+        showExtendView.value = true
+    }
 
     if (!showExtendView.value) {
         Card(

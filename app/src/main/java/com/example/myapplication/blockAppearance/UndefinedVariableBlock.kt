@@ -31,9 +31,9 @@ import com.example.myapplication.logic.UndefiniedVariable
 @Composable
 fun DrawUndefinedVariableBlock(block: UndefiniedVariable) {
     val showExtendView = remember { mutableStateOf(false) }
-    val variables = block.names
+    val variables = remember { mutableStateOf(block.inputEditLeft) }
 
-    if (block.names == "") {
+    if (variables.value == "") {
         DrawExtendedUndefinedVariableBlock(block)
     } else {
         Card(
@@ -54,7 +54,7 @@ fun DrawUndefinedVariableBlock(block: UndefiniedVariable) {
                             .fillMaxWidth(.3f), contentAlignment = Alignment.CenterEnd
                     ) {
                         Text(
-                            variables,
+                            block.inputEditLeft,
                             fontStyle = FontStyle(0),
                             color = Color.White,
                             modifier = Modifier.padding(5.dp)
@@ -185,7 +185,7 @@ fun DrawExtendedUndefinedVariableBlock(block: UndefiniedVariable) {
                             .fillMaxWidth(1f), contentAlignment = Alignment.Center
                     ) {
                         IconButton(onClick = {
-                            block.names = variables.value
+                            block.inputEditLeft = variables.value
                             showExtendView.value = false
                         }) {
                             Icon(

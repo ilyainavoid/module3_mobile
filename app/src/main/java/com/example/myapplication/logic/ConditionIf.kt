@@ -13,7 +13,10 @@ class ConditionIf : Block() {
         expressionLeft = inputEditLeft
         expressionRight = inputEditRight
         comparator = inputComparator
-        //добавить с консолью
+        begin.adapterConsole = adapterConsole
+        end.adapterConsole = adapterConsole
+        exit = Exit()
+        exit.adapterConsole = adapterConsole
         exit = Exit()
 
         initFlag = false
@@ -22,32 +25,25 @@ class ConditionIf : Block() {
 
     override fun runBlock() {
         super.runBlock()
-        // Выполняем initVar() единожды
         if (initFlag) initVariables()
-        // Соединяем блок конца при выполнении условия с выходом - блоком которым соединен if блок
         connectBlocks(end, exit, clear = false)
 
-        // Соединяем выход с блоком, после if, если это не блок логики if
         nextBlock?.let {
             if (nextBlock != begin && nextBlock != exit && nextBlock != end && nextBlock != null)
                 connectBlocks(exit, it, clear = false)
         }
 
-        // Проверяем правильность операторов сравнения
         if (comparator !in allComparators) {
             status = invalidComparator()
             return
         }
 
-        // Высчитываем левую и правую часть для сравнения
         val calculateLeft = calculate(container, expressionLeft)
         val calculateRight = calculate(container, expressionRight)
-        // Проверяем правильность вычислений
         if ((calculateLeft.first != OK()) || (calculateRight.first != OK())) {
             status = if (calculateLeft.first == OK()) calculateRight.first else calculateLeft.first
             return
         }
-        // Сравниваем
         if (expressionComparator(
                 calculateLeft.second,
                 calculateRight.second,

@@ -95,7 +95,8 @@ fun DrawAssignmentBlock(block: Equation) {
                     ) {
                         IconButton(onClick = {
                             showExtendView.value = true
-                            controller.containerStorage.deleteVariable(block.variable)
+                            val deleteList = listOf(block.variable)
+                            controller.containerStorage.setNullVars(deleteList)
                         }) {
                             Icon(
                                 Icons.Outlined.Settings,

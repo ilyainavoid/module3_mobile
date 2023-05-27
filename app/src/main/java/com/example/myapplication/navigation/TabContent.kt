@@ -55,10 +55,13 @@ import com.example.myapplication.logic.Begin
 import com.example.myapplication.logic.Block
 import com.example.myapplication.logic.BlocksController
 import com.example.myapplication.logic.ConditionIf
+import com.example.myapplication.logic.ConditionIfElse
 import com.example.myapplication.logic.DefinedArray
 import com.example.myapplication.logic.DefiniedVar
+import com.example.myapplication.logic.Else
 import com.example.myapplication.logic.End
 import com.example.myapplication.logic.Equation
+import com.example.myapplication.logic.Exit
 import com.example.myapplication.logic.ForCycle
 import com.example.myapplication.logic.OK
 import com.example.myapplication.logic.OutputBlock
@@ -107,8 +110,7 @@ fun BlockCreationMenuContent() {
         "Defined array",
         "Undefined array",
         "Condition If Else",
-        "For cycle",
-        "Exit"
+        "For cycle"
     )
     val context = LocalContext.current
     LazyColumn(
@@ -123,31 +125,38 @@ fun BlockCreationMenuContent() {
                         "Defined variable" -> {
                             newBlock = DefiniedVar()
                             controller.blockList.add(newBlock)
+                            newBlock.indexListBlocks = controller.blockList.size - 1
                         }
 
                         "Undefined variable" -> {
                             newBlock = UndefiniedVariable()
                             controller.blockList.add(newBlock)
+                            newBlock.indexListBlocks = controller.blockList.size - 1
                         }
 
                         "Reassignment" -> {
                             newBlock = Equation()
                             controller.blockList.add(newBlock)
+                            newBlock.indexListBlocks = controller.blockList.size - 1
                         }
 
                         "Condition If" -> {
                             newBlock = ConditionIf()
                             controller.blockList.add(newBlock)
                             newBlock = Begin()
+                            controller.blockList[controller.blockList.size-1].begin = newBlock as Begin
                             controller.blockList.add(newBlock)
                             newBlock = End()
+                            controller.blockList[controller.blockList.size-2].end = newBlock as End
                             controller.blockList.add(newBlock)
+
                         }
 
                         "While Cycle" -> {
                             newBlock = WhileCycle()
                             controller.blockList.add(newBlock)
                             newBlock = Begin()
+                            controller.blockList[controller.blockList.size-1].begin = newBlock as Begin
                             controller.blockList.add(newBlock)
                             newBlock = End()
                             controller.blockList.add(newBlock)
@@ -156,39 +165,58 @@ fun BlockCreationMenuContent() {
                         "Output" -> {
                             newBlock = OutputBlock()
                             controller.blockList.add(newBlock)
+                            newBlock.indexListBlocks = controller.blockList.size - 1
+
                         }
 
                         "Defined array" -> {
                             newBlock = DefinedArray()
                             controller.blockList.add(newBlock)
+                            newBlock.indexListBlocks = controller.blockList.size-1
+
                         }
 
                         "Undefined array" -> {
                             newBlock = UndefinedArray()
                             controller.blockList.add(newBlock)
+                            newBlock.indexListBlocks = controller.blockList.size-1
+
                         }
 
                         "Condition If Else" -> {
-                            newBlock = ConditionIf()
+                            newBlock = ConditionIfElse()
                             controller.blockList.add(newBlock)
                             newBlock = Begin()
+                            controller.blockList[controller.blockList.size-1].begin = newBlock as Begin
                             controller.blockList.add(newBlock)
                             newBlock = End()
+                            controller.blockList[controller.blockList.size-2].end = newBlock as End
                             controller.blockList.add(newBlock)
+                            newBlock = Else()
+                            controller.blockList.add(newBlock)
+                            newBlock = Begin()
+                            controller.blockList[controller.blockList.size-4].beginElse = newBlock as Begin
+                            controller.blockList.add(newBlock)
+                            newBlock = End()
+                            controller.blockList[controller.blockList.size-5].endElse = newBlock as End
+                            controller.blockList.add(newBlock)
+
                         }
 
                         "For cycle" -> {
                             newBlock = ForCycle()
                             controller.blockList.add(newBlock)
+                            newBlock.indexListBlocks = controller.blockList.size-1
+
                             newBlock = Begin()
                             controller.blockList.add(newBlock)
-                            newBlock = End()
-                            controller.blockList.add(newBlock)
-                        }
+                            newBlock.indexListBlocks = controller.blockList.size-1
 
-                        "End" -> {
                             newBlock = End()
                             controller.blockList.add(newBlock)
+                            newBlock.indexListBlocks = controller.blockList.size-1
+
+
                         }
                     }
                 }, modifier = Modifier

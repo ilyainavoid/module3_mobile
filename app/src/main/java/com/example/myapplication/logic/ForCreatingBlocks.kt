@@ -3,7 +3,7 @@ package com.example.myapplication.logic
 import com.example.myapplication.navigation.CodeEditor.controller
 import com.example.myapplication.navigation.Console.adapterConsole
 
-private fun connectionInBlock(index: Int): Pair<Int, Int> {
+fun connectionInBlock(index: Int): Pair<Int, Int> {
     var i = index
     while (controller.blockList[i + 1].type != "End") {
         if (i + 1 == controller.blockList.size) {
@@ -12,7 +12,8 @@ private fun connectionInBlock(index: Int): Pair<Int, Int> {
         }
         if (controller.blockList[i].type == "ConditionIf" ||
             controller.blockList[i].type == "ConditionIfElse" ||
-            controller.blockList[i].type == "CycleWhile"
+            controller.blockList[i].type == "CycleWhile" ||
+            controller.blockList[i].type == "For Cycle"
         ) {
             val temp = if (controller.blockList[i].type == "ConditionIfElse")
                 connectionIfElse(i)
@@ -41,7 +42,7 @@ private fun connectionInBlock(index: Int): Pair<Int, Int> {
     return Pair(i, 0)
 }
 
-private fun connectionIfElse(index: Int): Int {
+fun connectionIfElse(index: Int): Int {
     var i = index + 1
     if (controller.blockList[i].type == "Begin") {
         i += 1
@@ -96,7 +97,7 @@ private fun connectionIfElse(index: Int): Int {
     }
 }
 
-private fun connectionIfOrWhile(index: Int): Int {
+fun connectionIfOrWhile(index: Int): Int {
     var i = index + 1
     if (controller.blockList[i].type == "Begin") {
         i += 1
@@ -120,7 +121,7 @@ private fun connectionIfOrWhile(index: Int): Int {
     }
 }
 
-private fun connectionBlocks(): Boolean {
+fun connectionBlocks(): Boolean {
     var i = 0
     while (i < controller.blockList.size - 1) {
         if (controller.blockList[i].type == "Begin") {

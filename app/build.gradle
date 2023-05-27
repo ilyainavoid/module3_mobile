@@ -103,4 +103,6 @@ dependencies {
 
     // RxJava integration
     implementation("cafe.adriel.voyager:voyager-rxjava:1.0.0-rc06")
+    implementation("org.burnoutcrew.composereorderable:reorderable:0.9.6")
+
 }

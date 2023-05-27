@@ -56,6 +56,7 @@ class ForCycle : Block() {
             status = invalidComparator()
         }
 
+
         val leftCalculated = calculate(container, leftExpression)
         val middleCalculated = calculate(container, middleExpression)
         val rightCalculated = calculate(container, rightExpression)
